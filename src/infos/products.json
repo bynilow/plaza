@@ -1,0 +1,69 @@
+[
+    {
+        "id": 1,
+        "name": "Смартфон Xiaomi 11 Lite 5G NE 8/128GB, черный",
+        "price": 32510,
+        "priceWithoutDiscount": 43520,
+        "isBestSeller": true,
+        "countBonuses": 0,
+        "averageDateDelivery": 3,
+        "photosURL": [
+            "https://opt-1791582.ssl.1c-bitrix-cdn.ru/upload/iblock/d24/1iq2c9ljvd727ejas0ablt4lxhfe86c6/smartfon_xiaomi_11_lite_5g_ne_256gb_chyernyy.jpg?163588025868031",
+            "https://opt-1791582.ssl.1c-bitrix-cdn.ru/upload/iblock/9cd/5p54f01opvh5d4u3xmllhxeemf1h2sr7/smartfon_xiaomi_11_lite_5g_ne_256gb_chyernyy_1.jpg?163588025860344",
+            "https://opt-1791582.ssl.1c-bitrix-cdn.ru/upload/iblock/24e/53ntxvr53spd3cejfnao4zr8nhax1vb1/smartfon_xiaomi_11_lite_5g_ne_256gb_chyernyy_2.jpg?163588025849672"
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Смартфон BQ 6051G Soul 1/16GB, темно-синий",
+        "price": 4845,
+        "priceWithoutDiscount": 5790,
+        "isBestSeller": false,
+        "countBonuses": 230,
+        "averageDateDelivery": 5,
+        "photosURL": [
+            "https://avatars.mds.yandex.net/get-mpic/5236535/img_id637397461838671336.jpeg/orig",
+            "https://avatars.mds.yandex.net/get-mpic/5209134/img_id2580962281190455062.jpeg/orig"
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Смарт-часы Wearfit Smart Watch K7 Pro (белый)",
+        "price": 987,
+        "priceWithoutDiscount": 2352,
+        "isBestSeller": false,
+        "countBonuses": 36,
+        "averageDateDelivery": 4,
+        "photosURL": [
+            "https://avatars.mds.yandex.net/get-mpic/5366650/img_id181486058498271721.jpeg/orig"
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Фитнес-браслет М6 розовый/смарт браслет/смарт часы/умные часы детские/часы для детей/часы для спорта/фитнес часы",
+        "price": 686,
+        "priceWithoutDiscount": 1350,
+        "isBestSeller": true,
+        "countBonuses": 30,
+        "averageDateDelivery": 5,
+        "photosURL": [
+            "https://avatars.mds.yandex.net/get-mpic/5268639/img_id4233123061805804239.jpeg/orig",
+            "https://avatars.mds.yandex.net/get-mpic/5252277/img_id8070218842149627042.jpeg/orig",
+            "https://avatars.mds.yandex.net/get-mpic/4575382/img_id3194516530383979138.jpeg/orig"
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Фитнес-браслет HUAWEI Band 6, розовый",
+        "price": 2999,
+        "priceWithoutDiscount": 5629,
+        "isBestSeller": true,
+        "countBonuses": 0,
+        "averageDateDelivery": 3,
+        "photosURL": [
+            "https://avatars.mds.yandex.net/get-mpic/4249638/img_id5017601602404025381.png/orig",
+            "https://avatars.mds.yandex.net/get-mpic/4412310/img_id6578612428979811484.png/orig",
+            "https://avatars.mds.yandex.net/get-mpic/3689399/img_id7118970815644516540.png/orig"
+        ]
+    }
+]
