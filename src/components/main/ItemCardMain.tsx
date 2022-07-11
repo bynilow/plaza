@@ -6,7 +6,8 @@ import AcUnitIcon from '@mui/icons-material/AcUnit';
 import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import { useDispatch } from 'react-redux';
-import { addProductCart } from '../../actions/products';
+import { addProductCart, removeProductCart, toggleProductFavorite } from '../../actions/products';
+import ItemCardPhotos from './ItemCardPhotos';
 
 interface IProps {
     id: number;
@@ -16,10 +17,16 @@ interface IProps {
     countBonuses: number; 
     name: string;
     averageDateDelivery: number;
-    photosURL: string[]
+    photosURL: string[];
+    countInCart?: number;
+    isFavorite: boolean;
+    weight: number;
 }
 
-function ItemCard({price, priceWithoutDiscount, isBestSeller, countBonuses, name, averageDateDelivery, id, photosURL}: IProps) {
+function ItemCardMain({
+    price, priceWithoutDiscount, isBestSeller, countBonuses, 
+    name, averageDateDelivery, id, photosURL, 
+    countInCart, isFavorite, weight}: IProps) {
 
     const myProps: IProps = {
         averageDateDelivery,
@@ -29,7 +36,10 @@ function ItemCard({price, priceWithoutDiscount, isBestSeller, countBonuses, name
         name,
         price,
         priceWithoutDiscount,
-        photosURL
+        photosURL,
+        countInCart,
+        isFavorite,
+        weight,
     }
 
     const myPrice = price;
@@ -43,23 +53,23 @@ function ItemCard({price, priceWithoutDiscount, isBestSeller, countBonuses, name
     let myDateDelivery = new Date(now);
     myDateDelivery.setDate(now.getDate() + myAverageDateDelivery);
 
-    const [countInCart, setCountInCart] = React.useState<number>(0)
-    const [isInFavorite, setIsInFavorite] = React.useState<boolean>(false)
+    // const [countInCart, setCountInCart] = React.useState<number>(0)
+    // const [isInFavorite, setIsInFavorite] = React.useState<boolean>(false)
 
     const dispatch = useDispatch();
 
     const toggleFavorite = () => {
-        setIsInFavorite(!isInFavorite);
+        dispatch<any>(toggleProductFavorite(id))
     }
 
     const addItem = () => {
-        dispatch<any>(addProductCart(myProps))
+        dispatch<any>(addProductCart(id))
     }
 
     const removeItem = () => {
-        // setCountInCart(countInCart - 1)
+        dispatch<any>(removeProductCart(id))
     }
-
+    const myPhoto = photosURL[0]
     return ( 
         <Box sx={{
             width:'250px', 
@@ -68,17 +78,16 @@ function ItemCard({price, priceWithoutDiscount, isBestSeller, countBonuses, name
             position: 'relative', 
             boxShadow: '0 0 5px rgba(0,0,0,0.2)',
             borderRadius: '10px'}}>
-            <Box sx={{width:'100%', height: '50%', backgroundColor: 'blue', position: 'relative'}}>
+            <Box sx={{width:'100%', height: '50%', position: 'relative'}}>
                 {
-                    isInFavorite
+                    isFavorite
                         ? <IconButton sx={{ color: 'red', position: 'absolute', right: '0', margin: '5px' }} onClick={toggleFavorite} >
                             <FavoriteOutlinedIcon />
                         </IconButton>
-                        : <IconButton sx={{ color: 'white', position: 'absolute', right: '0', margin: '5px' }} onClick={toggleFavorite}>
+                        : <IconButton sx={{ color: '#1976d2', position: 'absolute', right: '0', margin: '5px' }} onClick={toggleFavorite}>
                             <FavoriteTwoToneIcon />
                         </IconButton>
                 }
-                
                 <Box sx={{
                         backgroundColor: '#d00100',
                         position: 'absolute',
@@ -108,9 +117,12 @@ function ItemCard({price, priceWithoutDiscount, isBestSeller, countBonuses, name
                         </Box>
                         : null
                 }
+                <ItemCardPhotos photos={photosURL} />
+
+                
                 
             </Box>
-            <Box sx={{display: 'flex', alignItems: 'center', margin: '10px'}} >
+            <Box sx={{display: 'flex', alignItems: 'center', margin: '10px', marginTop: '25px'}} >
                 <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
                     {myPrice} P
                 </Typography>
@@ -128,7 +140,7 @@ function ItemCard({price, priceWithoutDiscount, isBestSeller, countBonuses, name
             </Box>
             {
                 myIsBestSeller
-                ? <Typography sx={{fontSize: '14px', margin: '10px', color: 'orange', fontWeight: 'bold'}} > Бестселлер </Typography>
+                ? <Typography sx={{fontSize: '14px', margin: '0 10px', color: 'orange', fontWeight: 'bold'}} > Бестселлер </Typography>
                 : null
             }
             <Box sx={{maxHeight: '15%', overflow: 'hidden'}}>
@@ -177,4 +189,4 @@ function ItemCard({price, priceWithoutDiscount, isBestSeller, countBonuses, name
     );
 }
 
-export default ItemCard;
+export default ItemCardMain;

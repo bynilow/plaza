@@ -11,7 +11,9 @@
             "https://opt-1791582.ssl.1c-bitrix-cdn.ru/upload/iblock/d24/1iq2c9ljvd727ejas0ablt4lxhfe86c6/smartfon_xiaomi_11_lite_5g_ne_256gb_chyernyy.jpg?163588025868031",
             "https://opt-1791582.ssl.1c-bitrix-cdn.ru/upload/iblock/9cd/5p54f01opvh5d4u3xmllhxeemf1h2sr7/smartfon_xiaomi_11_lite_5g_ne_256gb_chyernyy_1.jpg?163588025860344",
             "https://opt-1791582.ssl.1c-bitrix-cdn.ru/upload/iblock/24e/53ntxvr53spd3cejfnao4zr8nhax1vb1/smartfon_xiaomi_11_lite_5g_ne_256gb_chyernyy_2.jpg?163588025849672"
-        ]
+        ],
+        "weight": 450,
+        "isFavorite": false
     },
     {
         "id": 2,
@@ -24,7 +26,9 @@
         "photosURL": [
             "https://avatars.mds.yandex.net/get-mpic/5236535/img_id637397461838671336.jpeg/orig",
             "https://avatars.mds.yandex.net/get-mpic/5209134/img_id2580962281190455062.jpeg/orig"
-        ]
+        ],
+        "weight": 480,
+        "isFavorite": false
     },
     {
         "id": 3,
@@ -36,7 +40,9 @@
         "averageDateDelivery": 4,
         "photosURL": [
             "https://avatars.mds.yandex.net/get-mpic/5366650/img_id181486058498271721.jpeg/orig"
-        ]
+        ],
+        "weight": 220,
+        "isFavorite": false
     },
     {
         "id": 4,
@@ -50,7 +56,9 @@
             "https://avatars.mds.yandex.net/get-mpic/5268639/img_id4233123061805804239.jpeg/orig",
             "https://avatars.mds.yandex.net/get-mpic/5252277/img_id8070218842149627042.jpeg/orig",
             "https://avatars.mds.yandex.net/get-mpic/4575382/img_id3194516530383979138.jpeg/orig"
-        ]
+        ],
+        "weight": 250,
+        "isFavorite": false
     },
     {
         "id": 5,
@@ -64,6 +72,8 @@
             "https://avatars.mds.yandex.net/get-mpic/4249638/img_id5017601602404025381.png/orig",
             "https://avatars.mds.yandex.net/get-mpic/4412310/img_id6578612428979811484.png/orig",
             "https://avatars.mds.yandex.net/get-mpic/3689399/img_id7118970815644516540.png/orig"
-        ]
+        ],
+        "weight": 210,
+        "isFavorite": false
     }
 ]

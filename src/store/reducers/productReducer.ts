@@ -3,46 +3,115 @@ import { IProductState, ProductAction, ProductActionTypes } from "../../types/pr
 const initalState: IProductState = {
     products: [],
     productsInCart: [],
+    productsInFavorite: [],
+    cartObjects: [],
     isLoading: false,
 }
 
 export const productReducer = (state = initalState, action: ProductAction): IProductState => {
     switch(action.type){
-        case ProductActionTypes.SET_PRODUCTS: 
+        case ProductActionTypes.SET_PRODUCTS: {
             return{
                 ...state,
                 products: action.payload
             }
-        case ProductActionTypes.ADD_PRODUCT_CART: 
+        }
+        case ProductActionTypes.GET_PRODUCTS_IN_CART: {
+            return{
+                ...state,
+                cartObjects: action.payload.products
+            }
+        }
+        case ProductActionTypes.SET_PRODUCTS_IN_CART: {
+            return{
+                ...state,
+                productsInCart: action.payload.products
+            }
+        }
+        case ProductActionTypes.ADD_PRODUCT_CART: {
             const payload = action.payload;
             let newCart = state.productsInCart;
-            let isFound: boolean = false;
-            if(newCart.length){
-                newCart.forEach((i, ind) => {
-                    if(i.product.id === payload.product.id){
-                        newCart[ind].count = newCart[ind].count + 1;
-                        isFound = true;
-                    }
-                })
-                if(!isFound) newCart.push({product: payload.product, count: 1})
-                console.log('is new: ', isFound)
+            const foundCartIndex = newCart.findIndex(p => p.productId === payload.productId)
+
+            if(foundCartIndex > -1){
+                const tempCount = newCart[foundCartIndex].count;
+                newCart[foundCartIndex].count = tempCount + 1;
             }
             else{
-                newCart.push({product: payload.product, count: 1})
+                newCart.push({productId: payload.productId, count: 1});
             }
+
+            localStorage.setItem('productsInCart', JSON.stringify(newCart))
             return{
                 ...state,
                 productsInCart: newCart
             }
-        case ProductActionTypes.REMOVE_PRODUCT_CART:
-            return {
-                ...state
+        }
+        case ProductActionTypes.REMOVE_PRODUCT_CART: {
+            const payload = action.payload;
+            let newCart = state.productsInCart;
+
+            const foundCartIndex = newCart.findIndex(p => p.productId === payload.productId)
+            if(foundCartIndex > -1){
+                if(newCart[foundCartIndex].count > 1){
+                    const tempCount = newCart[foundCartIndex].count;
+                    newCart[foundCartIndex].count = tempCount - 1;
+                }
+                else{
+                    newCart.splice(foundCartIndex, 1)
+                }
             }
-        case ProductActionTypes.SET_IS_LOADING:
+            localStorage.setItem('productsInCart', JSON.stringify(newCart))
+            return {
+                ...state,
+                productsInCart: newCart
+            }
+        }
+        case ProductActionTypes.SET_COUNT_IN_CART: {
+            const payload = action.payload;
+            let newCart = state.productsInCart;
+
+            const foundCartIndex = newCart.findIndex(p => p.productId === payload.productId)
+
+            if(foundCartIndex > -1) newCart[foundCartIndex].count = payload.productCount;
+
+            localStorage.setItem('productsInCart', JSON.stringify(newCart))
+            return {
+                ...state,
+                productsInCart: newCart
+            }
+        }
+        case ProductActionTypes.SET_IS_LOADING: {
             return {
                 ...state,
                 isLoading: action.payload.isLoading
             }
+        }
+        case ProductActionTypes.TOGGLE_FAVORITE: {
+            const payload = action.payload;
+            let newFavorite = state.productsInFavorite;
+            
+            const foundFavoriteIndex = newFavorite.findIndex(p => p.productId === payload.productId)
+            if(foundFavoriteIndex > -1) newFavorite.splice(foundFavoriteIndex, 1)
+            else newFavorite.push({productId: payload.productId})
+
+            return {
+                ...state,
+                productsInFavorite: newFavorite,
+               
+            }
+        }
+        case ProductActionTypes.DELETE_PRODUCT_FROM_CART: {
+            let newCart = state.productsInCart;
+            const foundInd = state.productsInCart.findIndex(p => p.productId === action.payload.productId);
+            newCart.splice(foundInd,1);
+            
+            localStorage.setItem('productsInCart', JSON.stringify(newCart))
+            return {
+                ...state,
+                productsInCart: newCart
+            }
+        }
         default: 
             return state
     }

@@ -1,25 +1,25 @@
-import { Box, CircularProgress, Container, Typography } from '@mui/material';
+import { Box, CircularProgress, Container } from '@mui/material';
 import * as React from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getProducts } from '../../actions/products';
-import { useActions } from '../hooks/useActions';
+import { getProducts, getProductsInCart } from '../../actions/products';
+import { IProductInCart } from '../../types/products';
 import { useTypedSelector } from '../hooks/useTypedSelector';
-import DiscountCard from './DiscountCard';
-import ItemCard from './ItemCard';
-import Slider from './Slider';
+import ItemCardMain from './ItemCardMain';
 
 interface MainProps {
     
 }
 
-const Main: React.FC = () => {
-    const { products, isLoading, productsInCart } = useTypedSelector(state => state.products);
-    console.log(productsInCart)
+const MainPage: React.FC = () => {
+    const { products, isLoading, productsInCart, productsInFavorite } = useTypedSelector(state => state.products);
     const dispatch = useDispatch()
+    const productsInCartStorage: IProductInCart[] = JSON.parse(localStorage.getItem('productsInCart')  || '[]');
+    const productsId = productsInCartStorage.map(p => {return p.productId})
 
     useEffect(() => {
         dispatch<any>(getProducts());
+        // if(!productsInCart.length) dispatch<any>(getProductsInCart(productsId));
     }, [])
 
     interface IItems {
@@ -35,7 +35,6 @@ const Main: React.FC = () => {
     const items: IItems[] = [
 
     ]
-{/* <Typography sx={{paddingTop: '100px'}} >Данные загружаются...</Typography> */}
     if (isLoading) {
         return <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh'}} > <CircularProgress /> </Box>
     }
@@ -44,7 +43,7 @@ const Main: React.FC = () => {
             <Container maxWidth="xl" sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap' }}>
                 {
                     products.map((item, ind) =>
-                        <ItemCard
+                        <ItemCardMain
                             key={item.id}
                             id={item.id}
                             averageDateDelivery={item.averageDateDelivery}
@@ -53,7 +52,12 @@ const Main: React.FC = () => {
                             name={item.name}
                             photosURL={item.photosURL}
                             price={item.price}
-                            priceWithoutDiscount={item.priceWithoutDiscount} />)
+                            priceWithoutDiscount={item.priceWithoutDiscount}
+                            isFavorite={
+                                productsInFavorite.findIndex(p => p.productId === item.id) > -1
+                            }
+                            countInCart={productsInCartStorage.find(p => p.productId === item.id)?.count}
+                            weight={item.weight} />)
                 }
 
 
@@ -62,4 +66,4 @@ const Main: React.FC = () => {
     );
 }
 
-export default Main;
+export default MainPage;
