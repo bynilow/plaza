@@ -6,6 +6,7 @@ const initalState: IProductState = {
     productsInFavorite: [],
     cartObjects: [],
     isLoading: false,
+    checkedProductsInCart: []
 }
 
 export const productReducer = (state = initalState, action: ProductAction): IProductState => {
@@ -110,6 +111,40 @@ export const productReducer = (state = initalState, action: ProductAction): IPro
             return {
                 ...state,
                 productsInCart: newCart
+            }
+        }
+        case ProductActionTypes.TOGGLE_CHECKED_CART: {
+            let newChecked = state.checkedProductsInCart;
+
+            const productId = action.payload.productId;
+            const cpIndex = newChecked.findIndex(cp => cp === productId);
+            if (cpIndex > -1) {
+                newChecked.splice(cpIndex, 1);
+            }
+            else {
+                newChecked.push(productId);
+            }
+            return {
+                ...state,
+                checkedProductsInCart: newChecked
+            }
+        }
+
+        case ProductActionTypes.SET_CHECKED_PRODUCTS_IN_CART: {
+            return {
+                ...state,
+                checkedProductsInCart: action.payload.productsId
+            }
+        }
+
+        case ProductActionTypes.TOGGLE_CHECKED_ALL_PRODUCTS_IN_CART: {
+            let newChecked = state.checkedProductsInCart;
+            const payload = action.payload.productsId;
+            newChecked = (newChecked.length === payload.length) ? [] : payload;
+            return {
+                ...state,
+                checkedProductsInCart: newChecked
+                    
             }
         }
         default: 

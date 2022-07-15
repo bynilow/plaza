@@ -111,3 +111,39 @@ export const deleteProductFromCart = (productId: number) => {
         }
     }
 }
+
+export const toggleCheckedProductInCart = (productId: number) => {
+    return async (dispatch: Dispatch<ProductAction>) => {
+        try {
+            dispatch({ type: ProductActionTypes.TOGGLE_CHECKED_CART, payload: {productId} });
+        }
+        catch (e) {
+
+        }
+    }
+}
+
+export const setCheckedProducts = (productsId: number[]) => {
+    return async (dispatch: Dispatch<ProductAction>) => {
+        try {
+            dispatch({ type: ProductActionTypes.SET_CHECKED_PRODUCTS_IN_CART, payload: {productsId} });
+        }
+        catch (e) {
+
+        }
+    }
+}
+
+export const toggleCheckedAllProductsInCart = (productsId: number[]) => {
+    return async (dispatch: Dispatch<ProductAction>) => {
+        try {
+            dispatch({ type: ProductActionTypes.TOGGLE_CHECKED_ALL_PRODUCTS_IN_CART, payload: {productsId} });
+        }
+        catch (e) {
+
+        }
+    }
+}
+
+
+

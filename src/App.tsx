@@ -27,7 +27,7 @@ function App() {
         <Header productsInCartStorage={productsInCartStorage} />
         <Routes>
           <Route path='/' element={<MainPage />} />
-          <Route path='/cart' element={<CartPage productsInCartTEST={[]} />} />
+          <Route path='/cart' element={<CartPage productsInCartTEST={productsInCart} />} />
         </Routes>
 
       </BrowserRouter>

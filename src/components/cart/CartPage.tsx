@@ -1,12 +1,13 @@
 import { Box, Button, Checkbox, CircularProgress, Container, Divider, FormControlLabel, Typography } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getProductsInCart, setProductsInCart } from "../../actions/products";
+import { getProductsInCart, setCheckedProducts, setProductsInCart, toggleCheckedAllProductsInCart, toggleCheckedProductInCart } from "../../actions/products";
 import { IProductInCart, IProduct } from "../../types/products";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import ItemCardCart from "./ItemCardCart";
 import InfoIcon from '@mui/icons-material/Info';
 import { NavLink } from "react-router-dom";
+import React from "react";
 
 interface CartPageProps {
     productsInCartTEST: IProductInCart[];
@@ -14,7 +15,8 @@ interface CartPageProps {
 
 const CartPage = ({ productsInCartTEST }: CartPageProps) => {
 
-    const { productsInCart, cartObjects, productsInFavorite, isLoading } = useTypedSelector(state => state.products);
+    const { productsInCart, cartObjects, productsInFavorite, isLoading, checkedProductsInCart } = useTypedSelector(state => state.products);
+
     const dispatch = useDispatch();
 
     let generalPrice = 0;
@@ -23,7 +25,11 @@ const CartPage = ({ productsInCartTEST }: CartPageProps) => {
     let savingCost = 0;
     let generalWt = 0;
     
+    const productsId = productsInCart.map(p => {return p.productId});
+    const [isAllChecked, setIsAllChecked] = useState<boolean>(true);
+
     useEffect(() => {
+        console.log('changed')
         const tempProducts: IProductInCart[] = JSON.parse(localStorage.getItem('productsInCart') || '[]');
         if(!productsInCart.length){
             if(tempProducts.length){
@@ -32,7 +38,9 @@ const CartPage = ({ productsInCartTEST }: CartPageProps) => {
         }
         const tempProductsId = tempProducts.map(p => {return p.productId});
         dispatch<any>(getProductsInCart(tempProductsId));
+        dispatch<any>(setCheckedProducts(tempProductsId));
     }, [productsInCart])
+
 
     const updateMissingPrice = () => {
         generalPrice = 0;
@@ -53,6 +61,18 @@ const CartPage = ({ productsInCartTEST }: CartPageProps) => {
         })
     }
     updateMissingPrice();
+
+    const toggleChecked = (checkedProductId: number) => {
+        dispatch<any>(toggleCheckedProductInCart(checkedProductId));
+    }
+
+    const toggleCheckedAll = () => {
+        const tempProductsId = productsInCart.map(p => {return p.productId});
+        dispatch<any>(toggleCheckedAllProductsInCart(tempProductsId));
+
+    }
+
+
     return (
         <Box sx={{ backgroundColor: '#f7f8f9', width: '100%', minHeight: '100vh', paddingTop: '100px' }}>
             <Container maxWidth="xl">
@@ -61,7 +81,7 @@ const CartPage = ({ productsInCartTEST }: CartPageProps) => {
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Box sx={{ background: 'white', display: 'flex', flexDirection: 'column', width: '65%' }}>
                         <Box sx={{ padding: '15px' }}>
-                            <FormControlLabel control={<Checkbox defaultChecked />} label="Выбрать все" />
+                            <FormControlLabel control={<Checkbox checked={productsId.length === checkedProductsInCart.length} onChange={toggleCheckedAll} />} label="Выбрать все" />
                             <Button sx={{ color: 'red' }}>Удалить выбранные</Button>
                         </Box>
                         <Divider />
@@ -77,14 +97,20 @@ const CartPage = ({ productsInCartTEST }: CartPageProps) => {
                             {
                                 isLoading
                                     ? <Box sx={{display: 'flex', justifyContent: 'center', paddingTop: '50px'}}> <CircularProgress /> </Box>
-                                    : cartObjects.map((item: IProduct, ind: number) =>
-                                        <ItemCardCart
-                                            key={item.id}
-                                            item={item}
-                                            count={productsInCart.find(p => p.productId === item.id)?.count || 1}
-                                            isFavorite={productsInFavorite.findIndex(p => p.productId === item.id) > -1}
-                                            updateMissingPrice={updateMissingPrice} />)
+                                    : productsInCart.map((item: IProductInCart, ind: number) => {
+                                        const tempProduct = cartObjects.find(co => co.id === item.productId);
+                                        if (tempProduct) {
+                                            return <ItemCardCart
+                                                key={tempProduct.id}
+                                                item={tempProduct}
+                                                count={item.count}
+                                                isFavorite={productsInFavorite.findIndex(p => p.productId === tempProduct.id) > -1}
+                                                updateMissingPrice={updateMissingPrice}
+                                                toggleChecked={(id) => toggleChecked(id)}
+                                                checkedProducts={checkedProductsInCart} />
+                                        }
 
+                                    })
                             }
 
 

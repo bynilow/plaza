@@ -4,6 +4,7 @@ export interface IProductState {
     productsInFavorite: IProductInFavorite[];
     cartObjects: IProduct[];
     isLoading?: boolean;
+    checkedProductsInCart: number[];
 }
 
 export interface IProduct {
@@ -37,6 +38,9 @@ export enum ProductActionTypes {
     TOGGLE_FAVORITE = "TOGGLE_FAVORITE",
     SET_COUNT_IN_CART = "SET_COUNT_IN_CART",
     DELETE_PRODUCT_FROM_CART = "DELETE_PRODUCT_FROM_CART",
+    TOGGLE_CHECKED_CART = "TOGGLE_CHECKED_CART",
+    SET_CHECKED_PRODUCTS_IN_CART = "SET_CHECKED_PRODUCTS_IN_CART",
+    TOGGLE_CHECKED_ALL_PRODUCTS_IN_CART = "TOGGLE_CHECKED_ALL_PRODUCTS_IN_CART",
     
 }
 
@@ -102,6 +106,27 @@ interface IDeleteProductFromCartAction {
     }
 }
 
+interface IToggleCheckedCartAction {
+    type: ProductActionTypes.TOGGLE_CHECKED_CART;
+    payload: {
+        productId: number
+    }
+}
+
+interface ISetCheckedProductsAction {
+    type: ProductActionTypes.SET_CHECKED_PRODUCTS_IN_CART;
+    payload: {
+        productsId: number[]
+    }
+}
+
+interface IToggleCheckedAllProductsInCart {
+    type: ProductActionTypes.TOGGLE_CHECKED_ALL_PRODUCTS_IN_CART;
+    payload: {
+        productsId: number[]
+    }
+}
+
 interface IProductAction {
     type: string;
     payload?: any;
@@ -116,4 +141,7 @@ export type ProductAction =
     IGetProductsInCartAction |
     ISetCountInCartAction |
     ISetProductsInCartAction | 
-    IDeleteProductFromCartAction;
+    IDeleteProductFromCartAction |
+    IToggleCheckedCartAction |
+    ISetCheckedProductsAction |
+    IToggleCheckedAllProductsInCart;

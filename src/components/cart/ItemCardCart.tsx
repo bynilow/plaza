@@ -11,14 +11,19 @@ interface IItemCardCartProps {
     count: number;
     isFavorite: boolean;
     updateMissingPrice: () => void;
+    toggleChecked: (id: number) => void;
+    checkedProducts: number[];
 }
  
-const ItemCardCart = ({item, count, isFavorite, updateMissingPrice}:IItemCardCartProps) => {
+const ItemCardCart = ({item, count, isFavorite, updateMissingPrice, toggleChecked, checkedProducts}:IItemCardCartProps) => {
     
     const dispatch = useDispatch();
 
     const [isEditCount, setIsEditCount] = React.useState<boolean>(false);
     const [countInCart, setCountInCart] = React.useState<number>(count);
+
+    const isChecked = checkedProducts.findIndex(cp => cp === item.id) > -1;
+
 
     const onChangeCountField = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newCount = Number(e.target.value)
@@ -59,10 +64,14 @@ const ItemCardCart = ({item, count, isFavorite, updateMissingPrice}:IItemCardCar
         dispatch<any>(deleteProductFromCart(item.id))
     }
 
+    const onChecked = () => {
+        toggleChecked(item.id);
+    }
+
 
     return ( 
         <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', margin: '15px', height: '130px'}}>
-            <Checkbox defaultChecked />
+            <Checkbox checked={isChecked} onChange={onChecked} />
             <Box sx={{
                 background: 'url(' + item.photosURL[0] + ')', 
                 width: '100px', height: '100px', 
