@@ -145,5 +145,15 @@ export const toggleCheckedAllProductsInCart = (productsId: number[]) => {
     }
 }
 
+export const deleteSelectedCart = () => {
+    return async (dispatch: Dispatch<ProductAction>) => {
+        try {
+            dispatch({ type: ProductActionTypes.DELETE_SELECTED_CART});
+        }
+        catch (e) {
+
+        }
+    }
+}
 
 

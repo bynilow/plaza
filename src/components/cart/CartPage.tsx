@@ -1,7 +1,7 @@
 import { Box, Button, Checkbox, CircularProgress, Container, Divider, FormControlLabel, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getProductsInCart, setCheckedProducts, setProductsInCart, toggleCheckedAllProductsInCart, toggleCheckedProductInCart } from "../../actions/products";
+import { deleteSelectedCart, getProductsInCart, setCheckedProducts, setProductsInCart, toggleCheckedAllProductsInCart, toggleCheckedProductInCart } from "../../actions/products";
 import { IProductInCart, IProduct } from "../../types/products";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import ItemCardCart from "./ItemCardCart";
@@ -69,9 +69,11 @@ const CartPage = ({ productsInCartTEST }: CartPageProps) => {
     const toggleCheckedAll = () => {
         const tempProductsId = productsInCart.map(p => {return p.productId});
         dispatch<any>(toggleCheckedAllProductsInCart(tempProductsId));
-
     }
 
+    const deleteSelected = () => {
+        dispatch<any>(deleteSelectedCart())
+    }
 
     return (
         <Box sx={{ backgroundColor: '#f7f8f9', width: '100%', minHeight: '100vh', paddingTop: '100px' }}>
@@ -82,7 +84,7 @@ const CartPage = ({ productsInCartTEST }: CartPageProps) => {
                     <Box sx={{ background: 'white', display: 'flex', flexDirection: 'column', width: '65%' }}>
                         <Box sx={{ padding: '15px' }}>
                             <FormControlLabel control={<Checkbox checked={productsId.length === checkedProductsInCart.length} onChange={toggleCheckedAll} />} label="Выбрать все" />
-                            <Button sx={{ color: 'red' }}>Удалить выбранные</Button>
+                            <Button sx={{ color: 'red' }} onClick={deleteSelected}>Удалить выбранные</Button>
                         </Box>
                         <Divider />
                         {

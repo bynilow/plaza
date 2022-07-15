@@ -1,3 +1,4 @@
+import { IProductInCart } from './../../types/products';
 import { IProductState, ProductAction, ProductActionTypes } from "../../types/products"
 
 const initalState: IProductState = {
@@ -145,6 +146,26 @@ export const productReducer = (state = initalState, action: ProductAction): IPro
                 ...state,
                 checkedProductsInCart: newChecked
                     
+            }
+        }
+
+        case ProductActionTypes.DELETE_SELECTED_CART: {
+            let newCart = state.productsInCart;
+            const selectedProducts = state.checkedProductsInCart;
+            
+            const removeItem = (array:IProductInCart[], item:number) => {
+                return array.filter(i => i.productId !== item)
+            }
+
+            selectedProducts.forEach(s => {
+                newCart = removeItem(newCart,s)
+            })
+
+            localStorage.setItem('productsInCart', JSON.stringify(newCart))
+            return {
+                ...state,
+                productsInCart: newCart,
+                checkedProductsInCart: []
             }
         }
         default: 

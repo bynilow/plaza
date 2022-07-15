@@ -41,6 +41,7 @@ export enum ProductActionTypes {
     TOGGLE_CHECKED_CART = "TOGGLE_CHECKED_CART",
     SET_CHECKED_PRODUCTS_IN_CART = "SET_CHECKED_PRODUCTS_IN_CART",
     TOGGLE_CHECKED_ALL_PRODUCTS_IN_CART = "TOGGLE_CHECKED_ALL_PRODUCTS_IN_CART",
+    DELETE_SELECTED_CART = "DELETE_SELECTED_CART",
     
 }
 
@@ -120,11 +121,16 @@ interface ISetCheckedProductsAction {
     }
 }
 
-interface IToggleCheckedAllProductsInCart {
+interface IToggleCheckedAllProductsInCartAction {
     type: ProductActionTypes.TOGGLE_CHECKED_ALL_PRODUCTS_IN_CART;
     payload: {
         productsId: number[]
     }
+}
+
+interface IDeleteSelectedCartAction {
+    type: ProductActionTypes.DELETE_SELECTED_CART;
+
 }
 
 interface IProductAction {
@@ -144,4 +150,5 @@ export type ProductAction =
     IDeleteProductFromCartAction |
     IToggleCheckedCartAction |
     ISetCheckedProductsAction |
-    IToggleCheckedAllProductsInCart;
+    IToggleCheckedAllProductsInCartAction |
+    IDeleteSelectedCartAction;
