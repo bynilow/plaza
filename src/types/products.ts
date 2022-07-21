@@ -16,7 +16,11 @@ export interface IProduct {
     name: string;
     averageDateDelivery: number;
     photosURL: string[];
+    isFavorite?: boolean;
     weight: number;
+    rating: number;
+    categoryFullPath: string;
+    countOrders: number;
 }
 
 export interface IProductInCart {
@@ -26,6 +30,20 @@ export interface IProductInCart {
 
 interface IProductInFavorite {
     productId: number;
+}
+
+export interface IReviewProduct {
+    avatarURL: string | null;
+    nickname: string;
+    advantages: string;
+    disadvantages: string;
+    color: string;
+    rating: number;
+    photosURL: string[];
+    date: string;
+    helped: number;
+    helpless: number;
+    private: boolean;
 }
 
 export enum ProductActionTypes {

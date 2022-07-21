@@ -1,0 +1,581 @@
+[
+    {
+        "productId": 1,
+        "reviews": [
+            {
+                "avatarURL": null,
+                "nickname": "Пец Ров",
+                "advantages": "против обветривания очень хорошо подходит, губы не сушит и после некоторого времени использовпния лечат их",
+                "disadvantages": "могло быть лучше",
+                "description": "В целом - отличная тарелка  ",
+                "color": "Белый",
+                "rating": 1,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-1/wc800/3598d0c1-1977-4c83-a993-6e92a884847c.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-1/wc800/5758c479-ea1f-498e-b3af-ceb6050d94be.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-5/wc800/2a424c79-375c-435d-ba68-e22a514e056a.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-2/wc800/cd44e06d-2113-498c-85fc-d413a3a48b2a.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-1/wc800/18638d3b-a0b1-4194-b308-35a0c2723ac5.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-2/wc800/cd44e06d-2113-498c-85fc-d413a3a48b2a.jpeg"
+                ],
+                "date": "11.06.2021",
+                "helped": 12,
+                "helpless": 13,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "nickname": "Киллая",
+                "advantages": "против обветривания очень хорошо подходит, губы не сушит и после некоторого времени использовпния лечат их",
+                "disadvantages": "Ткань очень мнется и по швам кое-где торчали нитки",
+                "description": "дешево",
+                "color": "Белый",
+                "rating": 1,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-4/wc800/7ae41090-d1ca-4d13-b8f9-39583981c25c.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-5/wc800/2a424c79-375c-435d-ba68-e22a514e056a.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-2/wc800/870d9713-4e13-4ecf-8a24-2abba5612255.jpeg"
+                ],
+                "date": "27.02.2021",
+                "helped": 18,
+                "helpless": 12,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "nickname": "Аровот Незль",
+                "advantages": "Рубашка приятная к телу. На размер 46 села хорошо. Не просвечивает.",
+                "disadvantages": "звук отстой",
+                "description": "часики супер лёгкие удобные",
+                "color": "Белый",
+                "rating": 5,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-4/wc800/fdf5594c-71e6-486b-bd7f-0b1a8e05eb49.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-4/wc800/7ae41090-d1ca-4d13-b8f9-39583981c25c.jpeg"
+                ],
+                "date": "07.12.2021",
+                "helped": 65,
+                "helpless": 9,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "nickname": "Киллая",
+                "advantages": "Рубашка приятная к телу. На размер 46 села хорошо. Не просвечивает.",
+                "disadvantages": "озу 2 гб!!! продавец уверял,что у данной модели 3гб, брешет,не верьте!!",
+                "description": "красиво",
+                "color": "Белый",
+                "rating": 3,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-1/wc800/18638d3b-a0b1-4194-b308-35a0c2723ac5.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-3/wc800/ba9f8f4c-58d3-4b64-8c8c-c3b0a477e7b5.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-5/wc800/853517d9-d3ef-4d25-beb1-a9771cd8609b.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-2/wc800/870d9713-4e13-4ecf-8a24-2abba5612255.jpeg"
+                ],
+                "helped": 1,
+                "helpless": 24,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "nickname": "Де В.",
+                "advantages": "Не особо блестит ",
+                "description": "Удобно",
+                "color": "Белый",
+                "rating": 3,
+                "photosURL": [
+                  null,
+                  "https://cdn1.ozone.ru/s3/rp-photo-3/wc800/8792abcc-9200-4b42-9f22-4f0059efa8b8.jpeg"
+                ],
+                "date": "08.07.2022",
+                "helped": 53,
+                "helpless": 5,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "nickname": "Алскр ",
+                "advantages": "Не так много",
+                "disadvantages": "в правой части монитора приоделённых цветах он мигает .После 2х мемяцев работы просто перестал включаться, идёт загрузка xiaomi пишет нет сигнала и просто потухает экран.",
+                "description": "покупкой довольна. и геншин, и апекс и даже малышка фазма очень радуют качеством картинки ",
+                "color": "Белый",
+                "rating": 5,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-3/wc800/8792abcc-9200-4b42-9f22-4f0059efa8b8.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-5/wc800/2a424c79-375c-435d-ba68-e22a514e056a.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-4/wc800/0384f0d2-67ae-4b0e-8ca3-7216d793cf30.jpeg"
+                ],
+                "date": "27.02.2021",
+                "helped": 50,
+                "helpless": 7,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "nickname": "Киллая",
+                "advantages": "Не особо блестит ",
+                "disadvantages": "озу 2 гб!!! продавец уверял,что у данной модели 3гб, брешет,не верьте!!",
+                "description": "красиво",
+                "color": "Белый",
+                "rating": 6,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-3/wc800/ba9f8f4c-58d3-4b64-8c8c-c3b0a477e7b5.jpeg"
+                ],
+                "date": "27.02.2021",
+                "helped": 42,
+                "helpless": 26,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "advantages": "против обветривания очень хорошо подходит, губы не сушит и после некоторого времени использовпния лечат их",
+                "disadvantages": "мнётся, но это проблема хлопка",
+                "description": "Удобно",
+                "color": "Белый",
+                "rating": 6,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-1/wc800/5758c479-ea1f-498e-b3af-ceb6050d94be.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-2/wc800/870d9713-4e13-4ecf-8a24-2abba5612255.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-1/wc800/3598d0c1-1977-4c83-a993-6e92a884847c.jpeg"
+                ],
+                "date": "11.06.2021",
+                "helped": 3,
+                "helpless": 30,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "advantages": "Недорогой, быстрый.",
+                "disadvantages": "Ткань очень мнется и по швам кое-где торчали нитки",
+                "description": "Рекомендую. ",
+                "color": "Белый",
+                "rating": 4,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-2/wc800/870d9713-4e13-4ecf-8a24-2abba5612255.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-4/wc800/0384f0d2-67ae-4b0e-8ca3-7216d793cf30.jpeg"
+                ],
+                "date": "12.03.2021",
+                "helped": 35,
+                "helpless": 25,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "advantages": "против обветривания очень хорошо подходит, губы не сушит и после некоторого времени использовпния лечат их",
+                "disadvantages": "звук отстой",
+                "description": "покупкой довольна. и геншин, и апекс и даже малышка фазма очень радуют качеством картинки ",
+                "color": "Белый",
+                "rating": 1,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-5/wc800/853517d9-d3ef-4d25-beb1-a9771cd8609b.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-1/wc800/18638d3b-a0b1-4194-b308-35a0c2723ac5.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-2/wc800/cd44e06d-2113-498c-85fc-d413a3a48b2a.jpeg"
+                ],
+                "date": "29.06.2021",
+                "helped": 27,
+                "helpless": 8,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "nickname": "Аровот Незль",
+                "advantages": "Недорогой, быстрый.",
+                "disadvantages": "Ткань очень мнется и по швам кое-где торчали нитки",
+                "description": "Удобно",
+                "color": "Белый",
+                "rating": 1,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-4/wc800/7ae41090-d1ca-4d13-b8f9-39583981c25c.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-5/wc800/13e186a4-98f1-4825-90de-f4c188076136.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-4/wc800/7ae41090-d1ca-4d13-b8f9-39583981c25c.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-1/wc800/3598d0c1-1977-4c83-a993-6e92a884847c.jpeg"
+                ],
+                "date": "11.06.2021",
+                "helped": 34,
+                "helpless": 15,
+                "private": false
+              }
+        ]
+    },
+    {
+        "productId": 2,
+        "reviews": [
+            {
+                "avatarURL": null,
+                "nickname": "Магурчикитал",
+                "advantages": "компактный",
+                "disadvantages": "Недостатков для такого смартфона нет",
+                "description": "покупкой довольна. и геншин, и апекс и даже малышка фазма очень радуют качеством картинки ",
+                "color": "Белый",
+                "rating": 6,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-3/wc800/6ca21cb5-79e3-4a5e-a7d3-c5685dd52b33.jpeg"
+                ],
+                "date": "16.04.2021",
+                "helped": 10,
+                "helpless": 4,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "nickname": "Бевые зая",
+                "advantages": "Хороший телефон за свои деньги",
+                "disadvantages": "звук отстой",
+                "description": "красиво",
+                "color": "Белый",
+                "rating": 3,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-4/wc800/6b80c6de-29cc-41d8-a3fc-f26663df5ea0.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-4/wc800/7ae41090-d1ca-4d13-b8f9-39583981c25c.jpeg"
+                ],
+                "date": "27.02.2021",
+                "helped": 43,
+                "helpless": 17,
+                "private": false
+              }
+        ]
+    },
+    {
+        "productId": 3,
+        "reviews": [
+            {
+                "avatarURL": null,
+                "nickname": "Ке В.",
+                "advantages": "Не особо блестит ",
+                "disadvantages": "Недостатков для такого смартфона нет",
+                "description": "покупкой довольна. и геншин, и апекс и даже малышка фазма очень радуют качеством картинки ",
+                "color": "Белый",
+                "rating": 1,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-1/wc800/18638d3b-a0b1-4194-b308-35a0c2723ac5.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-4/wc800/6b80c6de-29cc-41d8-a3fc-f26663df5ea0.jpeg"
+                ],
+                "date": "18.11.2021",
+                "helped": 41,
+                "helpless": 24,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "nickname": "Наповоазикол",
+                "advantages": "приятная ткань, не просвечивает, на 44размер немного свободна",
+                "description": "Рекомендую. ",
+                "color": "Белый",
+                "rating": 6,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-5/wc800/2a424c79-375c-435d-ba68-e22a514e056a.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-3/wc800/ba9f8f4c-58d3-4b64-8c8c-c3b0a477e7b5.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-5/wc800/2a424c79-375c-435d-ba68-e22a514e056a.jpeg"
+                ],
+                "date": "08.07.2022",
+                "helped": 26,
+                "helpless": 2,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "nickname": "Никон",
+                "advantages": "Хороший телефон за свои деньги",
+                "disadvantages": "могло быть лучше",
+                "description": "Довольны, советую.",
+                "color": "Белый",
+                "rating": 4,
+                "photosURL": [
+                  null,
+                  "https://cdn1.ozone.ru/s3/rp-photo-1/wc800/3598d0c1-1977-4c83-a993-6e92a884847c.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-4/wc800/6b80c6de-29cc-41d8-a3fc-f26663df5ea0.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-4/wc800/fdf5594c-71e6-486b-bd7f-0b1a8e05eb49.jpeg"
+                ],
+                "date": "18.11.2021",
+                "helped": 46,
+                "helpless": 27,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "advantages": "против обветривания очень хорошо подходит, губы не сушит и после некоторого времени использовпния лечат их",
+                "disadvantages": "батарею держит плохо",
+                "description": "часики супер лёгкие удобные",
+                "color": "Белый",
+                "rating": 4,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-3/wc800/8792abcc-9200-4b42-9f22-4f0059efa8b8.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-4/wc800/6b80c6de-29cc-41d8-a3fc-f26663df5ea0.jpeg"
+                ],
+                "date": "29.06.2021",
+                "helped": 52,
+                "helpless": 14,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "nickname": "Ке В.",
+                "advantages": "Хороший телефон за свои деньги",
+                "disadvantages": "звук отстой",
+                "description": "Качество товара хорошее, ещё не пробывал в работе!!!  ",
+                "color": "Белый",
+                "rating": 3,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-3/wc800/8792abcc-9200-4b42-9f22-4f0059efa8b8.jpeg"
+                ],
+                "date": "13.08.2021",
+                "helped": 8,
+                "helpless": 4,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "nickname": "Пя р к",
+                "advantages": "мне понравился. был бы чуть короче было бы супер. на рост 160 длинный ",
+                "disadvantages": "Не нашла",
+                "description": "красиво",
+                "color": "Белый",
+                "rating": 2,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-2/wc800/cd44e06d-2113-498c-85fc-d413a3a48b2a.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-3/wc800/ba9f8f4c-58d3-4b64-8c8c-c3b0a477e7b5.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-5/wc800/13e186a4-98f1-4825-90de-f4c188076136.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-3/wc800/6ca21cb5-79e3-4a5e-a7d3-c5685dd52b33.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-1/wc800/3598d0c1-1977-4c83-a993-6e92a884847c.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-3/wc800/8792abcc-9200-4b42-9f22-4f0059efa8b8.jpeg"
+                ],
+                "date": "18.11.2021",
+                "helped": 70,
+                "helpless": 2,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "nickname": "Фосиллая",
+                "advantages": "против обветривания очень хорошо подходит, губы не сушит и после некоторого времени использовпния лечат их",
+                "disadvantages": "все отлично",
+                "description": "часики супер лёгкие удобные",
+                "color": "Белый",
+                "rating": 2,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-1/wc800/18638d3b-a0b1-4194-b308-35a0c2723ac5.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-5/wc800/13e186a4-98f1-4825-90de-f4c188076136.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-3/wc800/8792abcc-9200-4b42-9f22-4f0059efa8b8.jpeg"
+                ],
+                "date": "18.11.2021",
+                "helped": 3,
+                "helpless": 17,
+                "private": false
+              }
+        ]
+    },
+    {
+        "productId": 4,
+        "reviews": [
+            {
+                "avatarURL": null,
+                "nickname": "Пе Ванюша",
+                "advantages": "Не особо блестит ",
+                "disadvantages": "все отлично",
+                "description": "покупкой довольна. и геншин, и апекс и даже малышка фазма очень радуют качеством картинки ",
+                "color": "Белый",
+                "rating": 5,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-3/wc800/ba9f8f4c-58d3-4b64-8c8c-c3b0a477e7b5.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-3/wc800/8792abcc-9200-4b42-9f22-4f0059efa8b8.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-5/wc800/853517d9-d3ef-4d25-beb1-a9771cd8609b.jpeg"
+                ],
+                "date": "08.11.2021",
+                "helped": 46,
+                "helpless": 23,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "nickname": "Злий К.",
+                "advantages": "все ок",
+                "disadvantages": "батарею держит плохо",
+                "description": "Качество товара хорошее, ещё не пробывал в работе!!!  ",
+                "color": "Белый",
+                "rating": 2,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-3/wc800/ba9f8f4c-58d3-4b64-8c8c-c3b0a477e7b5.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-3/wc800/ba9f8f4c-58d3-4b64-8c8c-c3b0a477e7b5.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-5/wc800/853517d9-d3ef-4d25-beb1-a9771cd8609b.jpeg"
+                ],
+                "date": "12.03.2021",
+                "helped": 30,
+                "helpless": 12,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "nickname": "Беньким зая ",
+                "advantages": "против обветривания очень хорошо подходит, губы не сушит и после некоторого времени использовпния лечат их",
+                "disadvantages": "в правой части монитора приоделённых цветах он мигает .После 2х мемяцев работы просто перестал включаться, идёт загрузка xiaomi пишет нет сигнала и просто потухает экран.",
+                "description": "Рекомендую. ",
+                "color": "Белый",
+                "rating": 6,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-4/wc800/fdf5594c-71e6-486b-bd7f-0b1a8e05eb49.jpeg"
+                ],
+                "date": "18.11.2021",
+                "helped": 28,
+                "helpless": 20,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "nickname": "Машачках",
+                "advantages": "Не так много",
+                "disadvantages": "Больше особенность чем недостаток - очень маркий, т.к матовое покрытие экрана, пластиковый корпус (но о каком метале идёт речь за 11к?). ",
+                "description": "дешево",
+                "color": "Белый",
+                "rating": 6,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-2/wc800/cd44e06d-2113-498c-85fc-d413a3a48b2a.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-4/wc800/fdf5594c-71e6-486b-bd7f-0b1a8e05eb49.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-5/wc800/2a424c79-375c-435d-ba68-e22a514e056a.jpeg"
+                ],
+                "date": "05.03.2021",
+                "helped": 57,
+                "helpless": 20,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "nickname": "Жанналов",
+                "advantages": "Цена и размер дисплея",
+                "disadvantages": "Больше особенность чем недостаток - очень маркий, т.к матовое покрытие экрана, пластиковый корпус (но о каком метале идёт речь за 11к?). ",
+                "description": "смотрится ништяк",
+                "color": "Белый",
+                "rating": 5,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-2/wc800/870d9713-4e13-4ecf-8a24-2abba5612255.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-1/wc800/3598d0c1-1977-4c83-a993-6e92a884847c.jpeg"
+                ],
+                "date": "12.03.2021",
+                "helped": 58,
+                "helpless": 7,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "nickname": "Зльков",
+                "disadvantages": "их много",
+                "description": "Довольны, советую.",
+                "color": "Белый",
+                "rating": 4,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-3/wc800/ba9f8f4c-58d3-4b64-8c8c-c3b0a477e7b5.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-4/wc800/7ae41090-d1ca-4d13-b8f9-39583981c25c.jpeg"
+                ],
+                "date": "13.09.2021",
+                "helped": 11,
+                "helpless": 19,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "nickname": "Зльков",
+                "advantages": "мне понравился. был бы чуть короче было бы супер. на рост 160 длинный ",
+                "disadvantages": "в правой части монитора приоделённых цветах он мигает .После 2х мемяцев работы просто перестал включаться, идёт загрузка xiaomi пишет нет сигнала и просто потухает экран.",
+                "description": "Купила для первого блюда",
+                "color": "Белый",
+                "rating": 3,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-3/wc800/8792abcc-9200-4b42-9f22-4f0059efa8b8.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-5/wc800/2a424c79-375c-435d-ba68-e22a514e056a.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-1/wc800/5758c479-ea1f-498e-b3af-ceb6050d94be.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-1/wc800/3598d0c1-1977-4c83-a993-6e92a884847c.jpeg"
+                ],
+                "date": "08.07.2022",
+                "helped": 43,
+                "helpless": 12,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "nickname": "Беньким зая ",
+                "advantages": "приятная ткань, не просвечивает, на 44размер немного свободна",
+                "disadvantages": "Недостатков для такого смартфона нет",
+                "color": "Белый",
+                "rating": 4,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-4/wc800/7ae41090-d1ca-4d13-b8f9-39583981c25c.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-3/wc800/6ca21cb5-79e3-4a5e-a7d3-c5685dd52b33.jpeg"
+                ],
+                "date": "13.09.2021",
+                "helped": 39,
+                "helpless": 1,
+                "private": false
+              }
+        ]
+    },
+    {
+        "productId": 5,
+        "reviews": [
+            {
+                "avatarURL": null,
+                "nickname": "Вам Тосик",
+                "advantages": "их нет",
+                "disadvantages": "звук отстой",
+                "color": "Белый",
+                "rating": 5,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-4/wc800/7ae41090-d1ca-4d13-b8f9-39583981c25c.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-1/wc800/3598d0c1-1977-4c83-a993-6e92a884847c.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-1/wc800/18638d3b-a0b1-4194-b308-35a0c2723ac5.jpeg"
+                ],
+                "helped": 1,
+                "helpless": 12,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "nickname": "Виные В.",
+                "advantages": "приятная ткань, не просвечивает, на 44размер немного свободна",
+                "disadvantages": "озу 2 гб!!! продавец уверял,что у данной модели 3гб, брешет,не верьте!!",
+                "description": "В целом - отличная тарелка  ",
+                "color": "Белый",
+                "rating": 3,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-3/wc800/ba9f8f4c-58d3-4b64-8c8c-c3b0a477e7b5.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-2/wc800/cd44e06d-2113-498c-85fc-d413a3a48b2a.jpeg"
+                ],
+                "date": "05.03.2021",
+                "helped": 63,
+                "helpless": 11,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "nickname": "Плий Кав",
+                "advantages": "приятная ткань, не просвечивает, на 44размер немного свободна",
+                "disadvantages": "могло быть лучше",
+                "description": "Качество товара хорошее, ещё не пробывал в работе!!!  ",
+                "color": "Белый",
+                "rating": 6,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-4/wc800/7ae41090-d1ca-4d13-b8f9-39583981c25c.jpeg"
+                ],
+                "date": "08.11.2021",
+                "helped": 24,
+                "helpless": 14,
+                "private": false
+              },
+              {
+                "avatarURL": null,
+                "nickname": "Злазитали",
+                "advantages": "Рубашка приятная к телу. На размер 46 села хорошо. Не просвечивает.",
+                "disadvantages": "Не обнаружили ",
+                "description": "дешево",
+                "color": "Белый",
+                "rating": 6,
+                "photosURL": [
+                  "https://cdn1.ozone.ru/s3/rp-photo-1/wc800/18638d3b-a0b1-4194-b308-35a0c2723ac5.jpeg",
+                  "https://cdn1.ozone.ru/s3/rp-photo-2/wc800/870d9713-4e13-4ecf-8a24-2abba5612255.jpeg"
+                ],
+                "date": "13.09.2021",
+                "helped": 61,
+                "helpless": 11,
+                "private": false
+              }
+        ]
+    }
+]

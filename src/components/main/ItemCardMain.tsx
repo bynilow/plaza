@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, Typography } from '@mui/material';
+import { Box, Button, IconButton, Rating, Typography } from '@mui/material';
 import * as React from 'react';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
@@ -8,6 +8,7 @@ import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import { useDispatch } from 'react-redux';
 import { addProductCart, removeProductCart, toggleProductFavorite } from '../../actions/products';
 import ItemCardPhotos from './ItemCardPhotos';
+import { IReviewProduct } from '../../types/products';
 
 interface IProps {
     id: number;
@@ -21,12 +22,15 @@ interface IProps {
     countInCart?: number;
     isFavorite: boolean;
     weight: number;
+    rating: number;
+    categoryFullPath: string;
+    countOrders: number;
 }
 
 function ItemCardMain({
     price, priceWithoutDiscount, isBestSeller, countBonuses, 
     name, averageDateDelivery, id, photosURL, 
-    countInCart, isFavorite, weight}: IProps) {
+    countInCart, isFavorite, weight, rating, categoryFullPath, countOrders}: IProps) {
 
     const myProps: IProps = {
         averageDateDelivery,
@@ -40,6 +44,9 @@ function ItemCardMain({
         countInCart,
         isFavorite,
         weight,
+        rating,
+        categoryFullPath,
+        countOrders
     }
 
     const myPrice = price;
@@ -73,7 +80,7 @@ function ItemCardMain({
     return ( 
         <Box sx={{
             width:'250px', 
-            height: '450px', 
+            height: '550px', 
             backgroundColor: 'white', 
             position: 'relative', 
             boxShadow: '0 0 5px rgba(0,0,0,0.2)',
@@ -81,10 +88,12 @@ function ItemCardMain({
             <Box sx={{width:'100%', height: '50%', position: 'relative'}}>
                 {
                     isFavorite
-                        ? <IconButton sx={{ color: 'red', position: 'absolute', right: '0', margin: '5px' }} onClick={toggleFavorite} >
+                        ? <IconButton sx={{ color: 'red', position: 'absolute', right: '0', margin: '5px', zIndex: '99' }} 
+                            onClick={toggleFavorite} >
                             <FavoriteOutlinedIcon />
                         </IconButton>
-                        : <IconButton sx={{ color: '#1976d2', position: 'absolute', right: '0', margin: '5px' }} onClick={toggleFavorite}>
+                        : <IconButton sx={{ color: '#1976d2', position: 'absolute', right: '0', margin: '5px', zIndex: '99' }} 
+                            onClick={toggleFavorite}>
                             <FavoriteTwoToneIcon />
                         </IconButton>
                 }
@@ -118,9 +127,6 @@ function ItemCardMain({
                         : null
                 }
                 <ItemCardPhotos photos={photosURL} />
-
-                
-                
             </Box>
             <Box sx={{display: 'flex', alignItems: 'center', margin: '10px', marginTop: '25px'}} >
                 <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
@@ -144,10 +150,17 @@ function ItemCardMain({
                 : null
             }
             <Box sx={{maxHeight: '15%', overflow: 'hidden'}}>
-                <Typography sx={{ margin: '10px', textOverflow: 'ellipsis', whiteSpace: 'wrap', overflow: 'hidden' }}>
+                <Typography sx={{ margin: '0px 10px', textOverflow: 'ellipsis', whiteSpace: 'wrap', overflow: 'hidden' }}>
                     {myName}
                 </Typography>
             </Box>
+            <Box sx={{display: 'flex', alignItems: 'center'}}>
+                <Rating precision={0.1} readOnly value={rating} sx={{margin: '0px 10px'}} />
+                <Typography sx={{fontSize: '12px', color: '#99999d', fontWeight: 'bold', paddingTop: '3px'}}>
+                    {countOrders} заказов
+                </Typography>
+            </Box>
+            
             
             <Box sx={{ position: 'absolute', bottom: '0', display: 'flex', flexDirection: 'column', padding: '10px' }}>
                 {

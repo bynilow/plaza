@@ -13,7 +13,10 @@
             "https://opt-1791582.ssl.1c-bitrix-cdn.ru/upload/iblock/24e/53ntxvr53spd3cejfnao4zr8nhax1vb1/smartfon_xiaomi_11_lite_5g_ne_256gb_chyernyy_2.jpg?163588025849672"
         ],
         "weight": 450,
-        "isFavorite": false
+        "isFavorite": false,
+        "rating": 4.5,
+        "categoryFullPath": "Электроника,Смартфоны",
+        "countOrders": 125
     },
     {
         "id": 2,
@@ -28,7 +31,10 @@
             "https://avatars.mds.yandex.net/get-mpic/5209134/img_id2580962281190455062.jpeg/orig"
         ],
         "weight": 480,
-        "isFavorite": false
+        "isFavorite": false,
+        "rating": 5,
+        "categoryFullPath": "Электроника,Смартфоны",
+        "countOrders": 22
     },
     {
         "id": 3,
@@ -42,11 +48,14 @@
             "https://avatars.mds.yandex.net/get-mpic/5366650/img_id181486058498271721.jpeg/orig"
         ],
         "weight": 220,
-        "isFavorite": false
+        "isFavorite": false,
+        "rating": 4,
+        "categoryFullPath": "Электроника,Смарт-Часы",
+        "countOrders": 67
     },
     {
         "id": 4,
-        "name": "Фитнес-браслет М6 розовый/смарт браслет/смарт часы/умные часы детские/часы для детей/часы для спорта/фитнес часы",
+        "name": "Фитнес-браслет М6 розовый/смарт браслет/смарт часы/умные часы детские",
         "price": 686,
         "priceWithoutDiscount": 1350,
         "isBestSeller": true,
@@ -58,7 +67,10 @@
             "https://avatars.mds.yandex.net/get-mpic/4575382/img_id3194516530383979138.jpeg/orig"
         ],
         "weight": 250,
-        "isFavorite": false
+        "isFavorite": false,
+        "rating": 3.5,
+        "categoryFullPath": "Электроника,Смарт-Часы",
+        "countOrders": 5
     },
     {
         "id": 5,
@@ -74,6 +86,9 @@
             "https://avatars.mds.yandex.net/get-mpic/3689399/img_id7118970815644516540.png/orig"
         ],
         "weight": 210,
-        "isFavorite": false
+        "isFavorite": false,
+        "rating": 3,
+        "categoryFullPath": "Электроника,Смарт-Часы",
+        "countOrders": 213
     }
 ]

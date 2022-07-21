@@ -1,4 +1,4 @@
-import { Box, FormControlLabel, IconButton, Radio, RadioGroup } from "@mui/material";
+import { Box, Button, FormControlLabel, IconButton, Radio, RadioGroup } from "@mui/material";
 import * as React from 'react';
 
 interface IItemCardPhotosProps {
@@ -23,6 +23,14 @@ const ItemCardPhotos = ({photos}:IItemCardPhotosProps) => {
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center'
             }} />
+            <Box sx={{display: 'flex', position: 'absolute', top: '0', width: '100%', height: '100%', zIndex: '1'}}>
+                    {
+                        photos.map((i, ind) => <Button 
+                        key={ind}
+                        onMouseOver={() => changePhoto(ind)}
+                        sx={{background: 'black', margin: '5px', width: '100%', height: '100%', opacity: '0', cursor: 'default'}} />)
+                    }
+                </Box>
             <Box sx={{
                 display: 'flex',
                 position: 'absolute',
@@ -31,7 +39,8 @@ const ItemCardPhotos = ({photos}:IItemCardPhotosProps) => {
                 bottom: '3',
                 justifyContent: 'center'
             }}>
-                <RadioGroup row defaultValue={0}>
+                
+                <RadioGroup row defaultValue={0} sx={{transform: 'scale(0.7)'}} >
                     {
                         photos.map((i, ind) => <Radio
                             size="small"

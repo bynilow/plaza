@@ -2,7 +2,7 @@ import { Box, CircularProgress, Container } from '@mui/material';
 import * as React from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getProducts, getProductsInCart } from '../../actions/products';
+import { getProducts, getProductsInCart, setProductsInCart } from '../../actions/products';
 import { IProductInCart } from '../../types/products';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import ItemCardMain from './ItemCardMain';
@@ -16,9 +16,10 @@ const MainPage: React.FC = () => {
     const dispatch = useDispatch()
     const productsInCartStorage: IProductInCart[] = JSON.parse(localStorage.getItem('productsInCart')  || '[]');
     const productsId = productsInCartStorage.map(p => {return p.productId})
-
+    console.log(productsInCartStorage)
     useEffect(() => {
         dispatch<any>(getProducts());
+        dispatch<any>(setProductsInCart(productsInCartStorage))
         // if(!productsInCart.length) dispatch<any>(getProductsInCart(productsId));
     }, [])
 
@@ -57,7 +58,10 @@ const MainPage: React.FC = () => {
                                 productsInFavorite.findIndex(p => p.productId === item.id) > -1
                             }
                             countInCart={productsInCartStorage.find(p => p.productId === item.id)?.count}
-                            weight={item.weight} />)
+                            weight={item.weight}
+                            rating={item.rating}
+                            categoryFullPath={item.categoryFullPath}
+                            countOrders={item.countOrders} />)
                 }
 
 
