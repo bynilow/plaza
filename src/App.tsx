@@ -6,6 +6,7 @@ import CartPage from './components/cart/CartPage';
 import Header from './components/header/Header';
 import { useTypedSelector } from './components/hooks/useTypedSelector';
 import MainPage from './components/main/MainPage';
+import ProductPage from './components/product/ProductPage';
 import Workbench from './components/workbench/Workbench';
 import { IProductInCart } from './types/products';
 const s = require('./app.module.css')
@@ -30,6 +31,7 @@ function App() {
           <Route path='/' element={<MainPage />} />
           <Route path='/workbench' element={<Workbench />} />
           <Route path='/cart' element={<CartPage productsInCartTEST={productsInCart} />} />
+          <Route path='/product' element={<ProductPage />} />
         </Routes>
 
       </BrowserRouter>
