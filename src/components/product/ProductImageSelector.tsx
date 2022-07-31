@@ -4,11 +4,12 @@ import { Box, Button, IconButton } from "@mui/material";
 import { FunctionComponent, useRef, useState } from "react";
 
 interface ProductImageSelectorProps {
-
+    photos: string[];
+    changeSelectedPhoto: (ind: number) => void;
 }
 
-const ProductImageSelector: FunctionComponent<ProductImageSelectorProps> = () => {
-    const photos = [
+const ProductImageSelector = ({ photos, changeSelectedPhoto }: ProductImageSelectorProps) => {
+    const photosT = [
         "https://mobicom-m.ru/image/cache/catalog/products/xiaomi/redmi9a/redmi9ablack-1000x1340.jpg",
         "https://khv.radioluch.ru/upload/iblock/8c9/8c981abf30e6fe2ed9e10e13e8058c6f.jpg",
         "https://playgame34.ru/wp-content/uploads/2020/07/Xiao-Mi-Mi-10-Pro-IMAK-3D.jpg",
@@ -31,8 +32,9 @@ const ProductImageSelector: FunctionComponent<ProductImageSelectorProps> = () =>
         refImages.current!.scrollTo(0, refImages.current!.scrollTop + 70);
     }
     const onClickImage = (event: React.MouseEvent<HTMLElement>, index: number) => {
-        refImages.current!.scrollTo(0, index*50);
+        refImages.current!.scrollTo(0, index * 50);
         setActiveImage(index);
+        changeSelectedPhoto(index);
     }
 
 
@@ -62,31 +64,34 @@ const ProductImageSelector: FunctionComponent<ProductImageSelectorProps> = () =>
                     overflowX: 'hidden'
                 }}>
                 {
-                    photos.map((i, ind) => <Button 
-                    onClick={e => onClickImage(e, ind)}
-                    key={ind}
-                    sx={
-                        ind === activeImage
-                        ? {
-                            minWidth: '70px',
-                            minHeight: '70px',
-                            padding: '10px',
-                            border: '2px solid blue',
-                            borderRadius: '10px',
-                            background: 'url(' + i + ')',
-                            backgroundSize: 'contain',
-                            backgroundRepeat: 'no-repeat',
-                            backgroundPosition: 'center'
-                        }
-                        : {
-                            minWidth: '70px',
-                            minHeight: '70px',
-                            background: 'url(' + i + ')',
-                            backgroundSize: 'contain',
-                            backgroundRepeat: 'no-repeat',
-                            backgroundPosition: 'center'
-                        }
-                    } />)
+                    photos.map((i, ind) =>
+                        <Button
+                            onClick={e => onClickImage(e, ind)}
+                            key={ind}
+                            sx={
+                                ind === activeImage
+                                    ? {
+                                        marginTop: '10px',
+                                        minWidth: '70px',
+                                        minHeight: '70px',
+                                        padding: '10px',
+                                        border: '2px solid blue',
+                                        borderRadius: '10px',
+                                        background: 'url(' + i + ')',
+                                        backgroundSize: 'contain',
+                                        backgroundRepeat: 'no-repeat',
+                                        backgroundPosition: 'center'
+                                    }
+                                    : {
+                                        marginTop: '10px',
+                                        minWidth: '70px',
+                                        minHeight: '70px',
+                                        background: 'url(' + i + ')',
+                                        backgroundSize: 'contain',
+                                        backgroundRepeat: 'no-repeat',
+                                        backgroundPosition: 'center'
+                                    }
+                            } />)
                 }
             </Box>
             <IconButton onClick={onClickBottom}>

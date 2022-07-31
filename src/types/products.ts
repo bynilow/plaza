@@ -5,6 +5,8 @@ export interface IProductState {
     cartObjects: IProduct[];
     isLoading?: boolean;
     checkedProductsInCart: number[];
+    productPage: IProduct | null;
+    productReviews: IReviewProduct | null;
 }
 
 export interface IProduct {
@@ -33,14 +35,20 @@ interface IProductInFavorite {
 }
 
 export interface IReviewProduct {
+    productId: number;
+    reviews: IReview[] | null;
+}
+
+interface IReview {
     avatarURL: string | null;
     nickname: string;
     advantages: string;
+    description: string;
     disadvantages: string;
     color: string;
     rating: number;
     photosURL: string[];
-    date: string;
+    writedDate: string;
     helped: number;
     helpless: number;
     private: boolean;
@@ -60,7 +68,8 @@ export enum ProductActionTypes {
     SET_CHECKED_PRODUCTS_IN_CART = "SET_CHECKED_PRODUCTS_IN_CART",
     TOGGLE_CHECKED_ALL_PRODUCTS_IN_CART = "TOGGLE_CHECKED_ALL_PRODUCTS_IN_CART",
     DELETE_SELECTED_CART = "DELETE_SELECTED_CART",
-    
+    SET_PRODUCT = "SET_PRODUCT",
+    SET_REVIEWS = "SET_REVIEWS",
 }
 
 interface ISetProductsAction {
@@ -148,7 +157,20 @@ interface IToggleCheckedAllProductsInCartAction {
 
 interface IDeleteSelectedCartAction {
     type: ProductActionTypes.DELETE_SELECTED_CART;
+}
 
+interface ISetProductAction {
+    type: ProductActionTypes.SET_PRODUCT;
+    payload: {
+        product: IProduct;
+    }
+}
+
+interface ISetReviewsAction {
+    type: ProductActionTypes.SET_REVIEWS;
+    payload: {
+        reviews: IReviewProduct;
+    }
 }
 
 interface IProductAction {
@@ -169,4 +191,6 @@ export type ProductAction =
     IToggleCheckedCartAction |
     ISetCheckedProductsAction |
     IToggleCheckedAllProductsInCartAction |
-    IDeleteSelectedCartAction;
+    IDeleteSelectedCartAction | 
+    ISetProductAction |
+    ISetReviewsAction;

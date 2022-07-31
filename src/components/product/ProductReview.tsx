@@ -40,12 +40,33 @@ const ProductReview = (
                     Товар куплен на PLAZA
                 </Typography>
             </Box>
-            <Typography sx={{ fontWeight: 'bold', marginTop: '15px' }}>Достоинства</Typography>
-            <Typography sx={{ marginTop: '10px', fontSize: '14px' }}>{advantages}</Typography>
-            <Typography sx={{ fontWeight: 'bold', marginTop: '15px' }}>Недостатки</Typography>
-            <Typography sx={{ marginTop: '10px', fontSize: '14px' }}>{disadvantages}</Typography>
-            <Typography sx={{ fontWeight: 'bold', marginTop: '15px' }}>Комментарий</Typography>
-            <Typography sx={{ marginTop: '10px', fontSize: '14px' }}>{description}</Typography>
+            {
+                advantages.length
+                    ? <Box>
+                        <Typography sx={{ fontWeight: 'bold', marginTop: '15px' }}>Достоинства</Typography>
+                        <Typography sx={{ marginTop: '10px', fontSize: '14px' }}>{advantages}</Typography>
+                    </Box>
+                    : <></>
+            }
+            {
+                disadvantages.length
+                    ? <Box>
+                        <Typography sx={{ fontWeight: 'bold', marginTop: '15px' }}>Недостатки</Typography>
+                        <Typography sx={{ marginTop: '10px', fontSize: '14px' }}>{disadvantages}</Typography>
+                    </Box>
+                    : <></>
+            }
+            {
+                description.length
+                    ? <Box>
+                        <Typography sx={{ fontWeight: 'bold', marginTop: '15px' }}>Комментарий</Typography>
+                        <Typography sx={{ marginTop: '10px', fontSize: '14px' }}>{description}</Typography>
+                    </Box>
+                    : <></>
+            }
+
+            
+            
             {
                 photosURL.length
                     ? 

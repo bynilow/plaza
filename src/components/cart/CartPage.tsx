@@ -83,7 +83,11 @@ const CartPage = ({ productsInCartTEST }: CartPageProps) => {
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Box sx={{ background: 'white', display: 'flex', flexDirection: 'column', width: '65%' }}>
                         <Box sx={{ padding: '15px' }}>
-                            <FormControlLabel control={<Checkbox checked={productsId.length === checkedProductsInCart.length} onChange={toggleCheckedAll} />} label="Выбрать все" />
+                            <FormControlLabel 
+                                control={<Checkbox 
+                                            checked={productsId.length === checkedProductsInCart.length} 
+                                            onChange={toggleCheckedAll} />} 
+                                            label="Выбрать все" />
                             <Button sx={{ color: 'red' }} onClick={deleteSelected}>Удалить выбранные</Button>
                         </Box>
                         <Divider />

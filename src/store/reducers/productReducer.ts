@@ -7,7 +7,9 @@ const initalState: IProductState = {
     productsInFavorite: [],
     cartObjects: [],
     isLoading: false,
-    checkedProductsInCart: []
+    checkedProductsInCart: [],
+    productPage: null,
+    productReviews: null
 }
 
 export const productReducer = (state = initalState, action: ProductAction): IProductState => {
@@ -168,6 +170,21 @@ export const productReducer = (state = initalState, action: ProductAction): IPro
                 checkedProductsInCart: []
             }
         }
+
+        case ProductActionTypes.SET_PRODUCT: {
+            return {
+                ...state,
+                productPage: action.payload.product
+            }
+        }
+
+        case ProductActionTypes.SET_REVIEWS: {
+            return {
+                ...state,
+                productReviews: action.payload.reviews
+            }
+        }
+
         default: 
             return state
     }

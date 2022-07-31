@@ -1,7 +1,8 @@
-import { IProduct, IProductInCart } from './../types/products';
+import { IProduct, IProductInCart, IReviewProduct } from './../types/products';
 import { Dispatch } from "react"
 import { IProductState, ProductAction, ProductActionTypes } from "../types/products"
 import Products from '../infos/products.json'
+import Reviews from '../infos/reviews.json'
 
 const timeoutMs = 1500;
 
@@ -12,6 +13,44 @@ export const getProducts = () => {
             await setTimeout(() => {
                 const productsRes = Products;
                 dispatch({ type: ProductActionTypes.SET_PRODUCTS, payload: productsRes });
+                dispatch({ type: ProductActionTypes.SET_IS_LOADING, payload: { isLoading: false } });
+            }, timeoutMs)
+        }
+        catch(e){
+
+        }
+    }
+}
+
+export const setProduct = (productId: number) => {
+    return async (dispatch: Dispatch<ProductAction>) => {
+        try{
+            dispatch({ type: ProductActionTypes.SET_IS_LOADING, payload: { isLoading: true } })
+            await setTimeout(() => {
+                const myProduct: IProduct = Products.find(ps => ps.id === productId)!;
+                dispatch({ type: ProductActionTypes.SET_PRODUCT, payload: {product: myProduct} });
+                dispatch({ type: ProductActionTypes.SET_IS_LOADING, payload: { isLoading: false } });
+            }, timeoutMs)
+        }
+        catch(e){
+
+        }
+    }
+}
+
+export const setReviews = (productId: number) => {
+    return async (dispatch: Dispatch<ProductAction>) => {
+        try{
+            dispatch({ type: ProductActionTypes.SET_IS_LOADING, payload: { isLoading: true } })
+            await setTimeout(() => {
+                let myReviews: IReviewProduct = {productId: 0, reviews: []};
+                Reviews.forEach((review) => {
+                    if(review.productId === productId){
+                        myReviews = review;
+                    }
+                })
+                console.log(myReviews)
+                dispatch({ type: ProductActionTypes.SET_REVIEWS, payload: {reviews: myReviews} });
                 dispatch({ type: ProductActionTypes.SET_IS_LOADING, payload: { isLoading: false } });
             }, timeoutMs)
         }

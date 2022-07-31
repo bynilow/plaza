@@ -1,5 +1,5 @@
-import { Box, Button, Container, Divider, IconButton, Link, Rating, Typography } from "@mui/material";
-import { FunctionComponent } from "react";
+import { Box, Button, CircularProgress, Container, Divider, IconButton, Link, Rating, Typography } from "@mui/material";
+import { FunctionComponent, useEffect, useState } from "react";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import IosShareIcon from '@mui/icons-material/IosShare';
@@ -11,15 +11,48 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import BlueLink from "../common/BlueLink";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import { useSearchParams } from "react-router-dom";
+import { IProduct, IProductInCart } from "../../types/products";
+import { getProducts, setProduct, setProductsInCart, setReviews } from "../../actions/products";
+import { useDispatch } from "react-redux";
+import { useTypedSelector } from "../hooks/useTypedSelector";
 
 interface ProductInfoProps {
 
 }
 
 const ProductInfo: FunctionComponent<ProductInfoProps> = () => {
-
+    
+    const {productsInCart, productPage} = useTypedSelector(state => state.products);
+    
     const isBestseller = true;
+    const [searchParams] = useSearchParams();
+    const [selectedPhoto, setSelectedPhoto] = useState(0);
+    const idProduct = Number(searchParams.get('id'));
 
+    const dispatch = useDispatch();
+    
+    const productsInCartStorage: IProductInCart[] = JSON.parse(localStorage.getItem('productsInCart')  || '[]');
+    useEffect(() => {
+        if(!productsInCart.length){
+            dispatch<any>(setProductsInCart(productsInCartStorage))
+        }
+        if(!productPage || productPage.id !== idProduct){
+            dispatch<any>(setProduct(idProduct))
+            dispatch<any>(setReviews(2));
+        }
+        
+    }, [])
+
+    let now = new Date();
+    let myDateDelivery = new Date(now);
+    myDateDelivery.setDate(now.getDate() + productPage?.averageDateDelivery!);
+
+    const changeSelectedPhoto = (indPhoto: number) => {
+        setSelectedPhoto(indPhoto);
+    }
+    
+    const isInCart = productsInCart.find(pc => idProduct === pc.productId) || null;
 
 
     return (
@@ -27,7 +60,7 @@ const ProductInfo: FunctionComponent<ProductInfoProps> = () => {
             <Container sx={{ padding: '10%' }} maxWidth="xl">
                 <Box sx={{ minHeight: '20vh' }}>
                     {
-                        isBestseller
+                        productPage?.isBestSeller
                             ?
                             <Typography sx={{
                                 border: '1px solid orange',
@@ -44,10 +77,10 @@ const ProductInfo: FunctionComponent<ProductInfoProps> = () => {
                             </Typography>
                             : <></>
                     }
-                    <Typography variant="h4" sx={{ fontWeight: 'bold' }}>name</Typography>
+                    <Typography variant="h4" sx={{ fontWeight: 'bold', width: '80%' }}>{productPage?.name}</Typography>
                     <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                            <Rating size="small" name="read-only" precision={0.1} value={4} readOnly />
+                            <Rating size="small" name="read-only" precision={0.1} value={Number(productPage?.rating)} readOnly />
                             <Button size="small">
                                 3096 отзывов
                             </Button>
@@ -61,7 +94,7 @@ const ProductInfo: FunctionComponent<ProductInfoProps> = () => {
                                 Поделиться
                             </Button>
                         </Box>
-                        <Typography sx={{ fontSize: '14px', color: 'gray' }}>Код товара: 12345</Typography>
+                        <Typography sx={{ fontSize: '14px', color: 'gray' }}>Код товара: {idProduct}</Typography>
                     </Box>
                 </Box>
 
@@ -74,11 +107,13 @@ const ProductInfo: FunctionComponent<ProductInfoProps> = () => {
                     justifyContent: 'space-between',
                     width: '100%'
                 }}>
-                    <ProductImageSelector />
+                    <ProductImageSelector 
+                        photos={productPage?.photosURL || [""]} 
+                        changeSelectedPhoto={(ind) => changeSelectedPhoto(ind)} />
                     <Box sx={{
                         width: '40%',
                         position: 'relative',
-                        background: 'url(https://playgame34.ru/wp-content/uploads/2020/07/Xiao-Mi-Mi-10-Pro-IMAK-3D.jpg)',
+                        background: 'url(' + productPage?.photosURL[selectedPhoto] + ')',
                         backgroundSize: 'contain',
                         backgroundRepeat: 'no-repeat'
                     }} >
@@ -93,11 +128,11 @@ const ProductInfo: FunctionComponent<ProductInfoProps> = () => {
                             borderRadius: '5px',
                             fontWeight: 'bold'
                         }}>
-                            -25%
+                            -{100-Math.round(productPage?.price!/productPage?.priceWithoutDiscount!*100)}%
                         </Typography>
                     </Box>
                     <Box sx={{ width: '25%' }}>
-                        <TypographySpecifications specificationName="Тип" specification={"Смартфон"} />
+                        <TypographySpecifications specificationName="Тип" specification={productPage?.categoryFullPath.split(',')[1]!} />
                         <TypographySpecifications specificationName="Диагональ экрана, дюймы" specification={"6.58"} />
                         <TypographySpecifications specificationName="Емкость аккумулятора, мАч" specification={"5000"} />
                         <TypographySpecifications specificationName="Процессор" specification={"Snapdragon 662 (8 ядер), 2.0 ГГц"} />
@@ -123,10 +158,10 @@ const ProductInfo: FunctionComponent<ProductInfoProps> = () => {
                             <Box>
                                 <Box sx={{ display: 'flex' }}>
                                     <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#f91155' }}>
-                                        12589 Р
+                                        {productPage?.price} Р
                                     </Typography>
                                     <Typography variant="h5" sx={{ fontWeight: 'bold', marginLeft: '10px', position: 'relative' }}>
-                                        14980 Р
+                                        {productPage?.priceWithoutDiscount} Р
                                         <Box sx={{
                                             width: '110%',
                                             height: '1.5px',
@@ -146,7 +181,7 @@ const ProductInfo: FunctionComponent<ProductInfoProps> = () => {
                                         padding: '10px',
                                         lineHeight: '0.5'
                                     }}>
-                                        2425 Р
+                                        {Math.round(productPage?.price! / 6)} Р
                                     </Typography>
                                     <Typography sx={{ color: 'gray', fontSize: '14px', paddingLeft: '5px' }}>x 6 мес</Typography>
                                 </Box>
@@ -156,7 +191,7 @@ const ProductInfo: FunctionComponent<ProductInfoProps> = () => {
                             </Box>
                             <Box sx={{ width: '100%' }}>
                                 {
-                                    !true
+                                    !isInCart
                                         ? <Button size="large" variant="contained" sx={{ width: '100%', marginTop: '10px' }}>
                                             В корзину
                                         </Button>
@@ -181,11 +216,11 @@ const ProductInfo: FunctionComponent<ProductInfoProps> = () => {
                                                 <IconButton color="primary" >
                                                     <AddIcon />
                                                 </IconButton>
-                                            </Box>                                        </Box>
+                                            </Box></Box>
                                 }
                                 <Typography sx={{ fontSize: '14px', fontWeight: '500', paddingTop: '5px', display: 'flex', alignItems: 'center' }}>
                                     <LocalShippingIcon sx={{ marginRight: '10px' }} />
-                                    Доставка завтра
+                                    {"Доставка " + myDateDelivery.toLocaleDateString().substring(0,5)}
                                 </Typography>
                             </Box>
                         </Box>

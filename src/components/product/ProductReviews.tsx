@@ -1,18 +1,11 @@
-import { FunctionComponent, useState } from "react";
-import { Box, Button, Checkbox, Container, Divider, FormControlLabel, IconButton, LinearProgress, Link, MenuItem, Rating, Select, SelectChangeEvent, Tab, Tabs, Typography } from "@mui/material";
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import IosShareIcon from '@mui/icons-material/IosShare';
-import ProductImageSelector from "./ProductImageSelector";
-import TypographySpecifications from "./TypographySpecifications";
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import RemoveIcon from '@mui/icons-material/Remove';
-import AddIcon from '@mui/icons-material/Add';
-import BlueLink from "../common/BlueLink";
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import RatingReviewsProducts from "./RatingReviewsProduct";
+import { Box, Button, Checkbox, Container, Divider, FormControlLabel, MenuItem, Rating, Select, SelectChangeEvent, Tab, Tabs, Typography } from "@mui/material";
+import { FunctionComponent, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useSearchParams } from "react-router-dom";
+import { setReviews } from "../../actions/products";
+import { useTypedSelector } from "../hooks/useTypedSelector";
 import ProductReview from "./ProductReview";
+import RatingReviewsProducts from "./RatingReviewsProduct";
 
 interface ProductReviewsProps {
 
@@ -20,10 +13,96 @@ interface ProductReviewsProps {
 
 const ProductReviews: FunctionComponent<ProductReviewsProps> = () => {
 
-    const [selectedSorting, setSelectedSorting] = useState('Сначала новые')
+    const [selectedSorting, setSelectedSorting] = useState('Сначала новые');
+    const [onlyPhoto, setOnlyPhoto] = useState(false);
+
+    const {productReviews} = useTypedSelector(state => state.products);
+    let myProductReviews = productReviews;
+    const changeSorting = () => {
+        switch(selectedSorting){
+            case 'Сначала новые': {
+                if(myProductReviews?.reviews?.length){
+                    myProductReviews?.reviews!.sort((d1:any,d2:any) => {
+                        if(d1.writedDate.valueOf() > d2.writedDate.valueOf()){
+                            return -1
+                        }
+                        if(d1.writedDate.valueOf() < d2.writedDate.valueOf()){
+                            return 1
+                        }
+                        return 0
+                    })
+                }
+                break;
+            }
+            case 'Сначала полезные': {
+                if(myProductReviews?.reviews?.length){
+                    myProductReviews?.reviews!.sort((r1:any,r2:any) => {
+                        if(r1.helped > r2.helped){
+                            return -1
+                        }
+                        if(r1.helped < r2.helped){
+                            return 1
+                        }
+                        return 0
+                    })
+                }
+                break;
+            }
+            case 'Сначала с высокой оценкой': {
+                if(myProductReviews?.reviews?.length){
+                    myProductReviews?.reviews!.sort((r1:any,r2:any) => {
+                        if(r1.rating > r2.rating){
+                            return -1
+                        }
+                        if(r1.rating < r2.rating){
+                            return 1
+                        }
+                        return 0
+                    })
+                }
+                break;
+            }
+            case 'Сначала с низкой оценкой': {
+                if(myProductReviews?.reviews?.length){
+                    myProductReviews?.reviews!.sort((r1:any,r2:any) => {
+                        if(r1.rating < r2.rating){
+                            return -1
+                        }
+                        if(r1.rating > r2.rating){
+                            return 1
+                        }
+                        return 0
+                    })
+                }
+                break;
+            }
+            default: {
+    
+            }
+        }
+    }
+    
+    
+    
+    
+
+    const [searchParams] = useSearchParams();
+    const idProduct = Number(searchParams.get('id'));
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+        if(!productReviews || productReviews.productId !== idProduct){
+            dispatch<any>(setReviews(idProduct))
+        }
+        
+    }, [])
+
+    changeSorting();
+    console.log(myProductReviews)
 
     const onChangeSelectedSorting = (event: SelectChangeEvent) => {
-        setSelectedSorting(event?.target.value)
+        setSelectedSorting(event?.target.value);
+        changeSorting();
     }
 
     return (
@@ -54,33 +133,50 @@ const ProductReviews: FunctionComponent<ProductReviewsProps> = () => {
                                 Сначала с низкой оценкой
                             </MenuItem>
                         </Select>
-                        <FormControlLabel control={<Checkbox />} label="Только с фото" />
-                        
+                        <FormControlLabel
+                            control={<Checkbox 
+                                checked={onlyPhoto}
+                                onChange={() => setOnlyPhoto(!onlyPhoto)} />}
+                                label="Только с фото" />
+
                     </Box>
                     <Divider sx={{ paddingTop: '10px' }} />
-                    <ProductReview 
-                        avatarURL={""}
-                        advantages={"Все класс"}
-                        disadvantages={"Все плохо"}
-                        date={"9 Февраля 2022"}
-                        description={"Могло быть лучше но все норм"}
-                        helped={228}
-                        helpless={13}
-                        isPrivate={false}
-                        nickname={"nickname"}
-                        photosURL={[
-                            "https://sun1.userapi.com/sun1-54/s/v1/if2/Nb16WG46cOmnZGwRyAUHziHFYEQEVW14MyrQJcXthI9GG5gMrzp9C1fUx-4AIZYv80BZJ_AgGgnIgwLFtOCbFS3B.jpg?size=993x992&quality=95&type=album",
-                            "https://sun9-west.userapi.com/sun9-2/s/v1/if2/I2yTPM87mEWugcr3vOZ2a6qSGh-D20chWKAKjwJfYi4OCJCWxm4EZsLnvy93ChjErR9abGoGfHKcVO06TuUo1kNz.jpg?size=1170x1317&quality=95&type=album",
-                            "https://sun1.userapi.com/sun1-96/s/v1/if2/dsAK8TqVC8XFCFI5gGgfd2UseV2saa9ldUb-er1o3zLocAKsMVHjrYPI-Ww3Zg9iNQjLmxoULvbV5FZyfFcVq3Mi.jpg?size=992x878&quality=96&type=album",
-                            "https://sun9-north.userapi.com/sun9-84/s/v1/if2/2lCzbAA0Bnh5u-uJDOmy47GIEotNxQzbWOQpv0t-ymQELJ3gYTLf2CHyazDdOb3UYfhQZbfizel7o51cEJ-w_WI4.jpg?size=749x652&quality=95&type=album",
-                            "https://sun9-north.userapi.com/sun9-77/s/v1/if2/X-ujG8lZIx1k1IK9adikOMDEY3DTVILiVRo4Ard84M2Kt5eCkIq9uRWudfxb_hCzrqcjWRpowI1XJKAd7TRrt_wc.jpg?size=564x564&quality=95&type=album",
-                            "https://skl-trade.ru/d/w52p-600x600.png",
-                            "https://evrostd.ru/upload/iblock/831/831886305758c746d712a2db16c0344a.png",
-                            "https://домкомп.рф/upload/iblock/099/-gigaset-da510-.jpg",
-                            "https://topsto-crimea.ru/images/detailed/5037/1632733126.9146.jpg"
-                        ]}
-                        rating={4}
-                    />
+                    {
+                        myProductReviews?.reviews
+                            ? onlyPhoto
+                                ? myProductReviews.reviews.map((pr, ind) =>
+                                    pr.photosURL.length
+                                        ? <ProductReview
+                                            avatarURL={""}
+                                            advantages={pr.advantages}
+                                            disadvantages={pr.disadvantages}
+                                            date={pr.writedDate}
+                                            description={pr.description}
+                                            helped={pr.helped}
+                                            helpless={pr.helpless}
+                                            isPrivate={pr.private}
+                                            nickname={pr.nickname}
+                                            photosURL={pr.photosURL}
+                                            rating={pr.rating}
+                                        />
+                                        : <></>)
+                                : myProductReviews.reviews.map((pr, ind) =>
+                                    <ProductReview
+                                        avatarURL={""}
+                                        advantages={pr.advantages}
+                                        disadvantages={pr.disadvantages}
+                                        date={pr.writedDate}
+                                        description={pr.description}
+                                        helped={pr.helped}
+                                        helpless={pr.helpless}
+                                        isPrivate={pr.private}
+                                        nickname={pr.nickname}
+                                        photosURL={pr.photosURL}
+                                        rating={pr.rating}
+                                    />)
+                            : <></>
+                        
+                    }
                 </Box>
                 <Box sx={{width: '25%'}}>
                     <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
