@@ -1,4 +1,4 @@
-import { Box, Button, Checkbox, Divider, FormControlLabel, IconButton, TextField, Typography, InputAdornment, OutlinedInput } from "@mui/material";
+import { Box, Button, Checkbox, Divider, FormControlLabel, IconButton, TextField, Typography, InputAdornment, OutlinedInput, Link } from "@mui/material";
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import * as React from 'react';
@@ -68,20 +68,38 @@ const ItemCardCart = ({item, count, isFavorite, updateMissingPrice, toggleChecke
         toggleChecked(item.id);
     }
 
+    const myUrl = `/product?id=${item.id}`;
 
     return ( 
         <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', margin: '15px', height: '130px'}}>
             <Checkbox checked={isChecked} onChange={onChecked} />
-            <Box sx={{
-                background: 'url(' + item.photosURL[0] + ')', 
-                width: '100px', height: '100px', 
-                backgroundSize: 'contain',
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'center'}} />
+            <Box 
+                sx={{
+                    background: 'url(' + item.photosURL[0] + ')',
+                    position: 'relative',
+                    width: '100px', height: '100px',
+                    backgroundSize: 'contain',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center'
+                }}>
+            <Link href={myUrl} sx={{width: '100%', height: '100%', position: 'absolute'}}></Link>
+            </Box>
             <Box sx={{display: 'flex', flexDirection: 'column', width:'50%'}}>
-                <Typography sx={{}}>
-                    {item.name}
-                </Typography>
+                <Link
+                    href={myUrl}
+                    sx={{
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'wrap',
+                        overflow: 'hidden',
+                        textDecoration: 'none',
+                        color: 'black',
+                        margin: '0',
+                        padding: '0'
+                    }}>
+                    <Typography>
+                        {item.name}
+                    </Typography>
+                </Link>
                 <Typography sx={{color: 'gray'}}>
                     {item.weight} гр
                 </Typography>

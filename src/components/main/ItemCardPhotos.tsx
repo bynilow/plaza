@@ -1,18 +1,19 @@
-import { Box, Button, FormControlLabel, IconButton, Radio, RadioGroup } from "@mui/material";
+import { Box, Button, FormControlLabel, IconButton, Link, Radio, RadioGroup } from "@mui/material";
 import * as React from 'react';
 
 interface IItemCardPhotosProps {
     photos: string[];
+    id: number;
 }
 
-const ItemCardPhotos = ({photos}:IItemCardPhotosProps) => {
+const ItemCardPhotos = ({ photos, id }: IItemCardPhotosProps) => {
 
     const [selectedPhoto, setSelectedPhoto] = React.useState<number>(0)
 
-    const changePhoto = (ind:number) => {
+    const changePhoto = (ind: number) => {
         setSelectedPhoto(ind)
     }
-
+    const myUrl = `/product?id=${id}`;
     return (
         <Box sx={{ width: '100%', height: '100%' }}>
             <Box sx={{
@@ -23,14 +24,15 @@ const ItemCardPhotos = ({photos}:IItemCardPhotosProps) => {
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center'
             }} />
-            <Box sx={{display: 'flex', position: 'absolute', top: '0', width: '100%', height: '100%', zIndex: '1'}}>
-                    {
-                        photos.map((i, ind) => <Button 
+
+            <Box sx={{ display: 'flex', position: 'absolute', top: '0', width: '100%', height: '100%', zIndex: '1' }}>
+                {
+                    photos.map((i, ind) => <Button
                         key={ind}
                         onMouseOver={() => changePhoto(ind)}
-                        sx={{background: 'black', margin: '5px', width: '100%', height: '100%', opacity: '0', cursor: 'default'}} />)
-                    }
-                </Box>
+                        sx={{ background: 'black', margin: '5px', width: '100%', height: '100%', opacity: '0', cursor: 'default' }} />)
+                }
+            </Box>
             <Box sx={{
                 display: 'flex',
                 position: 'absolute',
@@ -39,10 +41,11 @@ const ItemCardPhotos = ({photos}:IItemCardPhotosProps) => {
                 bottom: '3',
                 justifyContent: 'center'
             }}>
-                
-                <RadioGroup row defaultValue={0} sx={{transform: 'scale(0.7)'}} >
+
+                <RadioGroup row defaultValue={0} sx={{ transform: 'scale(0.7)' }} >
                     {
                         photos.map((i, ind) => <Radio
+                            sx={{ margin: '0' }}
                             size="small"
                             key={ind}
                             checked={selectedPhoto === ind}
@@ -50,7 +53,7 @@ const ItemCardPhotos = ({photos}:IItemCardPhotosProps) => {
                             onClick={() => changePhoto(ind)} />)
                     }
                 </RadioGroup>
-                
+
             </Box>
         </Box>
     );

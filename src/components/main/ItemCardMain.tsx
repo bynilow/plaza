@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, Rating, Typography } from '@mui/material';
+import { Box, Button, IconButton, Link, Rating, Typography } from '@mui/material';
 import * as React from 'react';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
@@ -77,13 +77,14 @@ function ItemCardMain({
         dispatch<any>(removeProductCart(id))
     }
     const myPhoto = photosURL[0]
+    const myUrl = `/product?id=${id}`;
     return ( 
         <Box sx={{
             width:'250px', 
             height: '550px', 
             backgroundColor: 'white', 
             position: 'relative', 
-            boxShadow: '0 0 5px rgba(0,0,0,0.2)',
+            boxShadow: '0 0 5px rgba(0,0,0,0.1)',
             borderRadius: '10px'}}>
             <Box sx={{width:'100%', height: '50%', position: 'relative'}}>
                 {
@@ -105,7 +106,7 @@ function ItemCardMain({
                         padding: '10px',
                         borderRadius: '30px'
                     }}>
-                    <Typography sx={{fontWeight: 'bold', color: 'white', fontSize: '16px'}} >
+                    <Typography sx={{fontWeight: 'bold', color: 'white', fontSize: '16px', lineHeight: '0.5'}} >
                         -{myDiscountProcent}%
                     </Typography>
                 </Box>
@@ -115,20 +116,24 @@ function ItemCardMain({
                             backgroundColor: 'black',
                             position: 'absolute',
                             display: 'flex',
+                            alignItems: 'center',
                             bottom: '0',
                             right: '0',
                             margin: '5px',
                             padding: '10px',
                             borderRadius: '30px'
                         }}>
-                            <AcUnitIcon sx={{ color: 'white' }} />
-                            <Typography sx={{ color: 'white', fontWeight: 'bold' }}> {myCountBonuses} </Typography>
+                            
+                            <Typography sx={{ color: 'white', fontWeight: 'bold', lineHeight: '0.0', display: 'flex', alignItems: 'center' }}> 
+                                <AcUnitIcon sx={{ color: 'white', fontSize: '14px', marginRight: '5px' }} />
+                                {myCountBonuses} 
+                            </Typography>
                         </Box>
                         : null
                 }
-                <ItemCardPhotos photos={photosURL} />
+                <ItemCardPhotos photos={photosURL} id={id} />
             </Box>
-            <Box sx={{display: 'flex', alignItems: 'center', margin: '10px', marginTop: '25px'}} >
+            <Box sx={{display: 'flex', alignItems: 'center', margin: '0 10px', marginTop: '25px'}} >
                 <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
                     {myPrice} P
                 </Typography>
@@ -150,9 +155,21 @@ function ItemCardMain({
                 : null
             }
             <Box sx={{maxHeight: '15%', overflow: 'hidden'}}>
-                <Typography sx={{ margin: '0px 10px', textOverflow: 'ellipsis', whiteSpace: 'wrap', overflow: 'hidden' }}>
-                    {myName}
-                </Typography>
+                <Link
+                    href={myUrl}
+                    sx={{
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'wrap',
+                        overflow: 'hidden',
+                        textDecoration: 'none',
+                        color: 'black',
+                        margin: '0',
+                        padding: '0'
+                    }}>
+                        <Typography sx={{padding: '0 10px'}}>
+                            {myName}
+                        </Typography>
+                </Link>
             </Box>
             <Box sx={{display: 'flex', alignItems: 'center'}}>
                 <Rating precision={0.1} readOnly value={rating} sx={{margin: '0px 10px'}} />
@@ -162,7 +179,7 @@ function ItemCardMain({
             </Box>
             
             
-            <Box sx={{ position: 'absolute', bottom: '0', display: 'flex', flexDirection: 'column', padding: '10px' }}>
+            <Box sx={{ position: 'absolute', bottom: '0', display: 'flex', flexDirection: 'column', padding: '10px', width: '100%' }}>
                 {
                     countInCart
                         ? <Box
@@ -191,7 +208,7 @@ function ItemCardMain({
                         </Button>
                 }
                 <Typography sx={{ fontWeight: 'bold' }}>
-                    {myDateDelivery.toLocaleDateString()} <Typography sx={{ color: 'gray' }} component="span">
+                    {myDateDelivery.toLocaleDateString().substring(0,5)} <Typography sx={{ color: 'gray' }} component="span">
                         доставит PLAZA
                     </Typography>
                 </Typography>

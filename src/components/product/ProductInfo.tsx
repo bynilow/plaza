@@ -23,7 +23,7 @@ interface ProductInfoProps {
 
 const ProductInfo: FunctionComponent<ProductInfoProps> = () => {
     
-    const {productsInCart, productPage} = useTypedSelector(state => state.products);
+    const {productsInCart, productPage, productReviews} = useTypedSelector(state => state.products);
     
     const isBestseller = true;
     const [searchParams] = useSearchParams();
@@ -54,6 +54,35 @@ const ProductInfo: FunctionComponent<ProductInfoProps> = () => {
     
     const isInCart = productsInCart.find(pc => idProduct === pc.productId) || null;
 
+    let myRating = 0;
+    if(productReviews?.reviews){
+        productReviews?.reviews?.forEach((r) => {
+            myRating+=r.rating;
+        })
+        myRating /= productReviews?.reviews.length;
+        myRating = parseFloat(myRating.toFixed(1));
+    }
+    let textReviews = "отзывов";
+    let countReviews = 0;
+    if(productReviews?.reviews?.length){
+        countReviews = productReviews?.reviews?.length;
+        const lastNumberReviews = Number(String(countReviews).substring(String(countReviews).length-2,String(countReviews).length));
+        
+        if ((lastNumberReviews > 1 && lastNumberReviews < 5) ||
+            (lastNumberReviews > 21 && lastNumberReviews < 25) ||
+            (lastNumberReviews > 31 && lastNumberReviews < 35) ||
+            (lastNumberReviews > 91 && lastNumberReviews < 95)) {
+            textReviews = "Отзыва"
+        }
+        else if(lastNumberReviews === 1 || lastNumberReviews === 21 || lastNumberReviews === 31 || lastNumberReviews === 91){
+            textReviews = "Отзыв"
+        }
+        else{
+            textReviews = "Отзывов"
+        }
+        
+    }
+    
 
     return (
         <Box sx={{ minHeight: '100vh' }}>
@@ -80,12 +109,12 @@ const ProductInfo: FunctionComponent<ProductInfoProps> = () => {
                     <Typography variant="h4" sx={{ fontWeight: 'bold', width: '80%' }}>{productPage?.name}</Typography>
                     <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                            <Rating size="small" name="read-only" precision={0.1} value={Number(productPage?.rating)} readOnly />
+                            <Rating size="small" name="read-only" precision={0.1} value={myRating} readOnly />
                             <Button size="small">
-                                3096 отзывов
+                                {countReviews} {textReviews}
                             </Button>
                             <Button size="small" startIcon={<HelpOutlineIcon />}>
-                                270 вопросов
+                                0 вопросов
                             </Button>
                             <Button size="small" startIcon={<FavoriteBorderIcon />}>
                                 В избранное

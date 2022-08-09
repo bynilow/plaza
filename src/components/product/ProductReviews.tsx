@@ -82,10 +82,6 @@ const ProductReviews: FunctionComponent<ProductReviewsProps> = () => {
         }
     }
     
-    
-    
-    
-
     const [searchParams] = useSearchParams();
     const idProduct = Number(searchParams.get('id'));
 
@@ -98,12 +94,22 @@ const ProductReviews: FunctionComponent<ProductReviewsProps> = () => {
     }, [])
 
     changeSorting();
-    console.log(myProductReviews)
 
     const onChangeSelectedSorting = (event: SelectChangeEvent) => {
         setSelectedSorting(event?.target.value);
         changeSorting();
     }
+
+    let myRating = 0;
+    let countRatings = [0,0,0,0,0];
+    if(productReviews?.reviews){
+        productReviews?.reviews?.forEach((r) => {
+            countRatings[r.rating-1] = countRatings[r.rating-1]+1;
+            myRating+=r.rating;
+        })
+        myRating /= productReviews?.reviews.length;
+        myRating = parseFloat(myRating.toFixed(1));
+    }    
 
     return (
         <Box sx={{ height: '100vh' }}>
@@ -180,16 +186,31 @@ const ProductReviews: FunctionComponent<ProductReviewsProps> = () => {
                 </Box>
                 <Box sx={{width: '25%'}}>
                     <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-                        <Rating defaultValue={2.7} precision={0.1} size="large" readOnly />
-                        <Typography variant="h5" sx={{fontWeight: 'bold'}}>4.9/5</Typography>
+                        <Rating defaultValue={myRating} precision={0.1} size="large" readOnly />
+                        <Typography variant="h5" sx={{fontWeight: 'bold'}}>{myRating}/5</Typography>
                     </Box>
                     <Divider sx={{paddingTop: '10px'}} />
                     <Box sx={{ paddingTop: '10px' }}>
-                        <RatingReviewsProducts ratingName="5 звезд" countReviews={200} countRatingReviews={35} />
-                        <RatingReviewsProducts ratingName="4 звезды" countReviews={200} countRatingReviews={50} />
-                        <RatingReviewsProducts ratingName="3 звезды" countReviews={200} countRatingReviews={20} />
-                        <RatingReviewsProducts ratingName="2 звезды" countReviews={200} countRatingReviews={40} />
-                        <RatingReviewsProducts ratingName="1 звезда" countReviews={200} countRatingReviews={55} />
+                        <RatingReviewsProducts 
+                            ratingName="5 звезд" 
+                            countReviews={productReviews?.reviews!.length || 0} 
+                            countRatingReviews={countRatings[4]} />
+                        <RatingReviewsProducts 
+                            ratingName="4 звезды" 
+                            countReviews={productReviews?.reviews!.length || 0} 
+                            countRatingReviews={countRatings[3]} />
+                        <RatingReviewsProducts 
+                            ratingName="3 звезды" 
+                            countReviews={productReviews?.reviews!.length || 0} 
+                            countRatingReviews={countRatings[2]} />
+                        <RatingReviewsProducts 
+                            ratingName="2 звезды" 
+                            countReviews={productReviews?.reviews!.length || 0} 
+                            countRatingReviews={countRatings[1]} />
+                        <RatingReviewsProducts 
+                            ratingName="1 звезда" 
+                            countReviews={productReviews?.reviews!.length || 0} 
+                            countRatingReviews={countRatings[0]} />
                     </Box>
                     <Button variant="contained" sx={{width: '100%', marginTop: '15px', borderRadius: '10px'}}>
                         Написать отзыв
