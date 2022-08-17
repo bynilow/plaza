@@ -1,5 +1,5 @@
 import { Box, CircularProgress, Typography } from "@mui/material";
-import { FunctionComponent } from "react";
+import { createRef, FunctionComponent } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import ProductInfo from "./ProductInfo";

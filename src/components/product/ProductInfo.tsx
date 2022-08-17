@@ -1,5 +1,5 @@
 import { Box, Button, CircularProgress, Container, Divider, IconButton, Link, Rating, Typography } from "@mui/material";
-import { FunctionComponent, useEffect, useState } from "react";
+import { createRef, FunctionComponent, useEffect, useState } from "react";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import IosShareIcon from '@mui/icons-material/IosShare';
@@ -13,7 +13,7 @@ import BlueLink from "../common/BlueLink";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { useSearchParams } from "react-router-dom";
 import { IProduct, IProductInCart } from "../../types/products";
-import { getProducts, setProduct, setProductsInCart, setReviews } from "../../actions/products";
+import { addProductCart, getProducts, removeProductCart, setProduct, setProductsInCart, setReviews } from "../../actions/products";
 import { useDispatch } from "react-redux";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 
@@ -22,26 +22,26 @@ interface ProductInfoProps {
 }
 
 const ProductInfo: FunctionComponent<ProductInfoProps> = () => {
-    
-    const {productsInCart, productPage, productReviews} = useTypedSelector(state => state.products);
-    
+
+    const { productsInCart, productPage, productReviews } = useTypedSelector(state => state.products);
+
     const isBestseller = true;
     const [searchParams] = useSearchParams();
     const [selectedPhoto, setSelectedPhoto] = useState(0);
     const idProduct = Number(searchParams.get('id'));
 
     const dispatch = useDispatch();
-    
-    const productsInCartStorage: IProductInCart[] = JSON.parse(localStorage.getItem('productsInCart')  || '[]');
+
+    const productsInCartStorage: IProductInCart[] = JSON.parse(localStorage.getItem('productsInCart') || '[]');
     useEffect(() => {
-        if(!productsInCart.length){
+        if (!productsInCart.length) {
             dispatch<any>(setProductsInCart(productsInCartStorage))
         }
-        if(!productPage || productPage.id !== idProduct){
+        if (!productPage || productPage.id !== idProduct) {
             dispatch<any>(setProduct(idProduct))
             dispatch<any>(setReviews(2));
         }
-        
+
     }, [])
 
     let now = new Date();
@@ -51,38 +51,44 @@ const ProductInfo: FunctionComponent<ProductInfoProps> = () => {
     const changeSelectedPhoto = (indPhoto: number) => {
         setSelectedPhoto(indPhoto);
     }
-    
+
     const isInCart = productsInCart.find(pc => idProduct === pc.productId) || null;
 
     let myRating = 0;
-    if(productReviews?.reviews){
+    if (productReviews?.reviews) {
         productReviews?.reviews?.forEach((r) => {
-            myRating+=r.rating;
+            myRating += r.rating;
         })
         myRating /= productReviews?.reviews.length;
         myRating = parseFloat(myRating.toFixed(1));
     }
     let textReviews = "отзывов";
     let countReviews = 0;
-    if(productReviews?.reviews?.length){
+    if (productReviews?.reviews?.length) {
         countReviews = productReviews?.reviews?.length;
-        const lastNumberReviews = Number(String(countReviews).substring(String(countReviews).length-2,String(countReviews).length));
-        
+        const lastNumberReviews = Number(String(countReviews).substring(String(countReviews).length - 2, String(countReviews).length));
+
         if ((lastNumberReviews > 1 && lastNumberReviews < 5) ||
             (lastNumberReviews > 21 && lastNumberReviews < 25) ||
             (lastNumberReviews > 31 && lastNumberReviews < 35) ||
             (lastNumberReviews > 91 && lastNumberReviews < 95)) {
             textReviews = "Отзыва"
         }
-        else if(lastNumberReviews === 1 || lastNumberReviews === 21 || lastNumberReviews === 31 || lastNumberReviews === 91){
+        else if (lastNumberReviews === 1 || lastNumberReviews === 21 || lastNumberReviews === 31 || lastNumberReviews === 91) {
             textReviews = "Отзыв"
         }
-        else{
+        else {
             textReviews = "Отзывов"
         }
-        
     }
-    
+
+    const addItem = () => {
+        dispatch<any>(addProductCart(idProduct))
+    }
+
+    const removeItem = () => {
+        dispatch<any>(removeProductCart(idProduct))
+    }
 
     return (
         <Box sx={{ minHeight: '100vh' }}>
@@ -136,18 +142,22 @@ const ProductInfo: FunctionComponent<ProductInfoProps> = () => {
                     justifyContent: 'space-between',
                     width: '100%'
                 }}>
-                    <ProductImageSelector 
-                        photos={productPage?.photosURL || [""]} 
+                    <ProductImageSelector
+                        photos={productPage?.photosURL || [""]}
                         changeSelectedPhoto={(ind) => changeSelectedPhoto(ind)} />
-                    <Box sx={{
-                        width: '40%',
-                        position: 'relative',
-                        background: 'url(' + productPage?.photosURL[selectedPhoto] + ')',
-                        backgroundSize: 'contain',
-                        backgroundRepeat: 'no-repeat'
-                    }} >
+                    <Box sx={{ position: 'relative', width: '40%', display: 'flex', justifyContent: 'center'}}>
+                        <Box
+                            component="img"
+                            src={productPage?.photosURL[selectedPhoto]}
+                            sx={{
+                                maxWidth: '100%',
+                                objectFit: 'contain',
+                                objectPosition: 'top',
+                                backgroundRepeat: 'no-repeat'
+                            }} />
                         <Typography sx={{
                             position: 'absolute',
+                            top: '0',
                             right: '0',
                             margin: '10px',
                             padding: '10px',
@@ -157,9 +167,10 @@ const ProductInfo: FunctionComponent<ProductInfoProps> = () => {
                             borderRadius: '5px',
                             fontWeight: 'bold'
                         }}>
-                            -{100-Math.round(productPage?.price!/productPage?.priceWithoutDiscount!*100)}%
+                            -{100 - Math.round(productPage?.price! / productPage?.priceWithoutDiscount! * 100)}%
                         </Typography>
                     </Box>
+
                     <Box sx={{ width: '25%' }}>
                         <TypographySpecifications specificationName="Тип" specification={productPage?.categoryFullPath.split(',')[1]!} />
                         <TypographySpecifications specificationName="Диагональ экрана, дюймы" specification={"6.58"} />
@@ -221,14 +232,20 @@ const ProductInfo: FunctionComponent<ProductInfoProps> = () => {
                             <Box sx={{ width: '100%' }}>
                                 {
                                     !isInCart
-                                        ? <Button size="large" variant="contained" sx={{ width: '100%', marginTop: '10px' }}>
+                                        ? <Button
+                                            onClick={addItem}
+                                            size="large"
+                                            variant="contained" sx={{ width: '100%', marginTop: '10px' }}>
                                             В корзину
                                         </Button>
                                         : <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px' }}>
-                                            <Button variant="contained" sx={{ width: '50%', display: 'flex', flexDirection: 'column' }}>
-                                                <Typography sx={{ lineHeight: '1', fontWeight: '500' }}>В корзине</Typography>
-                                                <Typography sx={{ lineHeight: '1', fontSize: '12px' }}>Перейти</Typography>
-
+                                            <Button
+                                                variant="contained"
+                                                sx={{ width: '50%', display: 'flex', flexDirection: 'column' }}>
+                                                <Link href="/cart" sx={{ textDecoration: 'none' }}>
+                                                    <Typography sx={{ lineHeight: '1', fontWeight: '500', color: 'white' }}>В корзине</Typography>
+                                                    <Typography sx={{ lineHeight: '1', fontSize: '12px', color: 'white' }}>Перейти</Typography>
+                                                </Link>
                                             </Button>
                                             <Box sx={{
                                                 display: 'flex',
@@ -236,20 +253,21 @@ const ProductInfo: FunctionComponent<ProductInfoProps> = () => {
                                                 border: '#1976d2 2px solid',
                                                 borderRadius: '5px'
                                             }}>
-                                                <IconButton color="primary" >
+                                                <IconButton color="primary" onClick={removeItem}>
                                                     <RemoveIcon />
                                                 </IconButton>
                                                 <Typography>
-                                                    5 шт.
+                                                    {isInCart.count} шт.
                                                 </Typography>
-                                                <IconButton color="primary" >
+                                                <IconButton color="primary" onClick={addItem}>
                                                     <AddIcon />
                                                 </IconButton>
-                                            </Box></Box>
+                                            </Box>
+                                        </Box>
                                 }
                                 <Typography sx={{ fontSize: '14px', fontWeight: '500', paddingTop: '5px', display: 'flex', alignItems: 'center' }}>
                                     <LocalShippingIcon sx={{ marginRight: '10px' }} />
-                                    {"Доставка " + myDateDelivery.toLocaleDateString().substring(0,5)}
+                                    {"Доставка " + myDateDelivery.toLocaleDateString().substring(0, 5)}
                                 </Typography>
                             </Box>
                         </Box>

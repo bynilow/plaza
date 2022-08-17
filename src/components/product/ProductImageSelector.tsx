@@ -71,7 +71,8 @@ const ProductImageSelector = ({ photos, changeSelectedPhoto }: ProductImageSelec
                             sx={
                                 ind === activeImage
                                     ? {
-                                        marginTop: '10px',
+                                        transition: '0.5s ease all',
+                                        margin: '10px 0',
                                         minWidth: '70px',
                                         minHeight: '70px',
                                         padding: '10px',
@@ -83,6 +84,7 @@ const ProductImageSelector = ({ photos, changeSelectedPhoto }: ProductImageSelec
                                         backgroundPosition: 'center'
                                     }
                                     : {
+                                        transition: '0.5s ease all',
                                         marginTop: '10px',
                                         minWidth: '70px',
                                         minHeight: '70px',

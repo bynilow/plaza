@@ -3,6 +3,7 @@ import { FunctionComponent, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { setReviews } from "../../actions/products";
+import ImageViewer from "../common/ImageViewer";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import ProductReview from "./ProductReview";
 import RatingReviewsProducts from "./RatingReviewsProduct";
@@ -15,6 +16,7 @@ const ProductReviews: FunctionComponent<ProductReviewsProps> = () => {
 
     const [selectedSorting, setSelectedSorting] = useState('Сначала новые');
     const [onlyPhoto, setOnlyPhoto] = useState(false);
+    const [openedImage, setOpenedImage] = useState('');
 
     const {productReviews} = useTypedSelector(state => state.products);
     let myProductReviews = productReviews;
@@ -111,8 +113,16 @@ const ProductReviews: FunctionComponent<ProductReviewsProps> = () => {
         myRating = parseFloat(myRating.toFixed(1));
     }    
 
+    const toggleOpenImage = (imageURL: string) => {
+        openedImage ? setOpenedImage('') : setOpenedImage(imageURL);
+    }
+
     return (
         <Box sx={{ height: '100vh' }}>
+            {
+                openedImage
+                && <ImageViewer imageURL={openedImage} closeImage={toggleOpenImage} />
+            }
             <Container maxWidth="xl" sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Box sx={{width: '70%'}}>
                     <Typography variant="h5" sx={{ fontWeight: 'bold' }} >
@@ -164,6 +174,7 @@ const ProductReviews: FunctionComponent<ProductReviewsProps> = () => {
                                             nickname={pr.nickname}
                                             photosURL={pr.photosURL}
                                             rating={pr.rating}
+                                            onClickPhoto={toggleOpenImage}
                                         />
                                         : <></>)
                                 : myProductReviews.reviews.map((pr, ind) =>
@@ -179,6 +190,7 @@ const ProductReviews: FunctionComponent<ProductReviewsProps> = () => {
                                         nickname={pr.nickname}
                                         photosURL={pr.photosURL}
                                         rating={pr.rating}
+                                        onClickPhoto={toggleOpenImage}
                                     />)
                             : <></>
                         

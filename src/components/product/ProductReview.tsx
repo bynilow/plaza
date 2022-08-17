@@ -13,10 +13,11 @@ interface ProductReviewProps {
     helped: number;
     helpless: number;
     isPrivate: boolean;
+    onClickPhoto: (url: string) => void;
 }
 
 const ProductReview = (
-    { avatarURL, nickname, advantages, disadvantages, description, rating, photosURL, date, helped, helpless, isPrivate }
+    { avatarURL, nickname, advantages, disadvantages, description, rating, photosURL, date, helped, helpless, isPrivate, onClickPhoto }
         : ProductReviewProps) => {
     return (
         <Box sx={{marginTop: '30px'}}>
@@ -70,10 +71,10 @@ const ProductReview = (
             {
                 photosURL.length
                     ? 
-                    <ImageList variant="masonry" cols={3} gap={3} sx={{marginTop: '15px'}}>
+                    <ImageList variant="quilted" cols={3} gap={3} sx={{marginTop: '15px'}}>
                         {
                             photosURL.map((p, ind) =>
-                                <ImageListItem key={ind}>
+                                <ImageListItem key={ind} sx={{cursor: 'pointer'}} onClick={() => onClickPhoto(p)}>
                                     <img src={p} />
                                 </ImageListItem>)
                         }
