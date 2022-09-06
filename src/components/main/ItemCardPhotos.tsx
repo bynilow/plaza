@@ -1,4 +1,4 @@
-import { Box, Button, FormControlLabel, IconButton, Link, Radio, RadioGroup } from "@mui/material";
+import { Box, Button, FormControlLabel, Hidden, IconButton, Link, Radio, RadioGroup } from "@mui/material";
 import * as React from 'react';
 
 interface IItemCardPhotosProps {
@@ -41,18 +41,20 @@ const ItemCardPhotos = ({ photos, id }: IItemCardPhotosProps) => {
                 bottom: '3',
                 justifyContent: 'center'
             }}>
-
-                <RadioGroup row defaultValue={0} sx={{ transform: 'scale(0.7)' }} >
-                    {
-                        photos.map((i, ind) => <Radio
-                            sx={{ margin: '0' }}
-                            size="small"
-                            key={ind}
-                            checked={selectedPhoto === ind}
-                            value={ind}
-                            onClick={() => changePhoto(ind)} />)
-                    }
-                </RadioGroup>
+                <Hidden lgDown>
+                    <RadioGroup row defaultValue={0} sx={{ transform: 'scale(0.7)' }} >
+                        {
+                            photos.map((i, ind) => <Radio
+                                sx={{ margin: '0' }}
+                                size="small"
+                                key={ind}
+                                checked={selectedPhoto === ind}
+                                value={ind}
+                                onClick={() => changePhoto(ind)} />)
+                        }
+                    </RadioGroup>
+                </Hidden>
+                
 
             </Box>
         </Box>

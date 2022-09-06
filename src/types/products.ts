@@ -2,7 +2,7 @@ export interface IProductState {
     products: IProduct[];
     productsInCart: IProductInCart[]; 
     productsInFavorite: IProductInFavorite[];
-    cartObjects: IProduct[];
+    objects: IProduct[];
     isLoading?: boolean;
     checkedProductsInCart: number[];
     productPage: IProduct | null;
@@ -30,7 +30,7 @@ export interface IProductInCart {
     count: number;
 }
 
-interface IProductInFavorite {
+export interface IProductInFavorite {
     productId: number;
 }
 
@@ -62,6 +62,8 @@ export enum ProductActionTypes {
     ADD_PRODUCT_CART = "ADD_PRODUCT_CART",
     REMOVE_PRODUCT_CART = "REMOVE_PRODUCT_CART",
     TOGGLE_FAVORITE = "TOGGLE_FAVORITE",
+    GET_PRODUCTS_IN_FAVORITE = "GET_PRODUCTS_IN_FAVORITE",
+    SET_PRODUCTS_IN_FAVORITE = "SET_PRODUCTS_IN_FAVORITE",
     SET_COUNT_IN_CART = "SET_COUNT_IN_CART",
     DELETE_PRODUCT_FROM_CART = "DELETE_PRODUCT_FROM_CART",
     TOGGLE_CHECKED_CART = "TOGGLE_CHECKED_CART",
@@ -88,6 +90,20 @@ interface ISetProductsInCartAction {
     type: ProductActionTypes.SET_PRODUCTS_IN_CART;
     payload: {
         products: IProductInCart[]
+    };
+}
+
+interface IGetProductsInFavoriteAction {
+    type: ProductActionTypes.GET_PRODUCTS_IN_FAVORITE;
+    payload: {
+        products: IProduct[]
+    };
+}
+
+interface ISetProductsInFavoriteAction {
+    type: ProductActionTypes.SET_PRODUCTS_IN_FAVORITE;
+    payload: {
+        products: IProductInFavorite[]
     };
 }
 
@@ -193,4 +209,6 @@ export type ProductAction =
     IToggleCheckedAllProductsInCartAction |
     IDeleteSelectedCartAction | 
     ISetProductAction |
-    ISetReviewsAction;
+    ISetReviewsAction |
+    ISetProductsInFavoriteAction | 
+    IGetProductsInFavoriteAction;

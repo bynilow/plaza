@@ -1,4 +1,4 @@
-import { IProduct, IProductInCart, IReviewProduct } from './../types/products';
+import { IProduct, IProductInCart, IProductInFavorite, IReviewProduct } from './../types/products';
 import { Dispatch } from "react"
 import { IProductState, ProductAction, ProductActionTypes } from "../types/products"
 import Products from '../infos/products.json'
@@ -72,8 +72,6 @@ export const getProductsInCart = (productsId: number[]) => {
                         myCart.push(p)
                     }
                 })
-                console.log("myCart")
-                console.log(myCart)
                 dispatch({ type: ProductActionTypes.GET_PRODUCTS_IN_CART, payload: {products: myCart} });
                 dispatch({ type: ProductActionTypes.SET_IS_LOADING, payload: { isLoading: false } });
             }, timeoutMs)
@@ -89,6 +87,40 @@ export const setProductsInCart = (products: IProductInCart[]) => {
     return async (dispatch: Dispatch<ProductAction>) => {
         try{
             dispatch({type: ProductActionTypes.SET_PRODUCTS_IN_CART, payload: {products}})
+        }
+        catch{
+
+        }
+    }
+}
+
+export const getProductsInFavorite = (productsId: number[]) => {
+    return async (dispatch: Dispatch<ProductAction>) => {
+        try{
+            dispatch({ type: ProductActionTypes.SET_IS_LOADING, payload: { isLoading: true } })
+            await setTimeout(() => {
+                const productsRes = Products;
+                let myFavorites:IProduct[] = [];
+                productsRes.forEach(p => {
+                    if(productsId.findIndex(pi => pi === p.id) > -1){
+                        myFavorites.push(p)
+                    }
+                })
+                dispatch({ type: ProductActionTypes.GET_PRODUCTS_IN_FAVORITE, payload: {products: myFavorites} });
+                dispatch({ type: ProductActionTypes.SET_IS_LOADING, payload: { isLoading: false } });
+            }, timeoutMs)
+            
+        }
+        catch{
+
+        }
+    }
+}
+
+export const setProductsInFavorite = (products: IProductInFavorite[]) => {
+    return async (dispatch: Dispatch<ProductAction>) => {
+        try{
+            dispatch({type: ProductActionTypes.SET_PRODUCTS_IN_FAVORITE, payload: {products}})
         }
         catch{
 

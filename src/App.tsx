@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { getProductsInCart } from './actions/products';
 import CartPage from './components/cart/CartPage';
+import FavoritePage from './components/favorite/FavoritePage';
 import Header from './components/header/Header';
 import { useTypedSelector } from './components/hooks/useTypedSelector';
 import MainPage from './components/main/MainPage';
@@ -26,11 +27,14 @@ function App() {
   return (
     <div className={s.glob}>
       <BrowserRouter>
-        <Header productsInCartStorage={productsInCartStorage} />
+        <Header 
+          productsInCartStorage={productsInCartStorage}
+          productsInFavoriteStorage={productsInFavoriteStorage} />
         <Routes>
           <Route path='/' element={<MainPage />} />
           <Route path='/workbench' element={<Workbench />} />
           <Route path='/cart' element={<CartPage productsInCartTEST={productsInCart} />} />
+          <Route path='/favorites' element={<FavoritePage />} />
           <Route path='/product' element={<ProductPage />} />
         </Routes>
 

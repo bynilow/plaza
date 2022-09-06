@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, Link, Rating, Typography } from '@mui/material';
+import { Box, Button, Hidden, IconButton, Link, Rating, styled, Typography } from '@mui/material';
 import * as React from 'react';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
@@ -78,26 +78,63 @@ function ItemCardMain({
     }
     const myPhoto = photosURL[0]
     const myUrl = `/product?id=${id}`;
+
+    const Root = styled('div')(({theme}) => ({
+        backgroundColor: 'white',
+        marginTop: '2%',
+        position: 'relative',
+        boxShadow: '0 0 5px rgba(0,0,0,0.1)',
+        borderRadius: '10px',
+        [theme.breakpoints.down('sm')]: {
+            width: '42%', 
+            minWidth: '200px',
+            height: '370px',
+            margin:'8% 2%'
+        },
+        [theme.breakpoints.up('sm')]: {
+            width: '30%', 
+            height: '430px',
+            margin:'4% 0'
+        },
+        [theme.breakpoints.up('md')]: {
+            width: '30%', 
+            height: '470px',
+            margin:'3% 0'
+        },
+        [theme.breakpoints.up('lg')]: {
+            width: '18%', 
+            height: '500px',
+            margin:'2% 0'
+        }
+    }))
+
+    const Name = styled('div')(({theme}) => ({
+        overflow: 'hidden',
+        textOverflow: 'clip',
+        [theme.breakpoints.down('md')]: {
+            maxHeight: '5%'
+        },
+        [theme.breakpoints.up('md')]: {
+            maxHeight: '13%'
+        }
+    }))
+
     return ( 
-        <Box sx={{
-            width:'250px', 
-            height: '550px', 
-            backgroundColor: 'white', 
-            position: 'relative', 
-            boxShadow: '0 0 5px rgba(0,0,0,0.1)',
-            borderRadius: '10px'}}>
+        <Root>
             <Box sx={{width:'100%', height: '50%', position: 'relative'}}>
-                {
-                    isFavorite
-                        ? <IconButton sx={{ color: 'red', position: 'absolute', right: '0', margin: '5px', zIndex: '99' }} 
-                            onClick={toggleFavorite} >
-                            <FavoriteOutlinedIcon />
-                        </IconButton>
-                        : <IconButton sx={{ color: '#1976d2', position: 'absolute', right: '0', margin: '5px', zIndex: '99' }} 
-                            onClick={toggleFavorite}>
-                            <FavoriteTwoToneIcon />
-                        </IconButton>
-                }
+                <Hidden mdDown>
+                    {
+                        isFavorite
+                            ? <IconButton sx={{ color: 'red', position: 'absolute', right: '0', margin: '5px', zIndex: '99' }}
+                                onClick={toggleFavorite} >
+                                <FavoriteOutlinedIcon />
+                            </IconButton>
+                            : <IconButton sx={{ color: '#1976d2', position: 'absolute', right: '0', margin: '5px', zIndex: '99' }}
+                                onClick={toggleFavorite}>
+                                <FavoriteTwoToneIcon />
+                            </IconButton>
+                    }
+                </Hidden>
                 <Box sx={{
                         backgroundColor: '#d00100',
                         position: 'absolute',
@@ -149,12 +186,15 @@ function ItemCardMain({
                         transform: 'rotate(-5deg)'}} />
                 </Typography>
             </Box>
-            {
-                myIsBestSeller
-                ? <Typography sx={{fontSize: '14px', margin: '0 10px', color: 'orange', fontWeight: 'bold'}} > Бестселлер </Typography>
-                : null
-            }
-            <Box sx={{maxHeight: '15%', overflow: 'hidden'}}>
+            <Hidden lgDown>
+                {
+                    myIsBestSeller
+                        ? <Typography sx={{ fontSize: '14px', margin: '0 10px', color: 'orange', fontWeight: 'bold' }} > Бестселлер </Typography>
+                        : null
+                }
+            </Hidden>
+            
+            <Name sx={{maxHeight: '15%', overflow: 'hidden'}} >
                 <Link
                     href={myUrl}
                     sx={{
@@ -170,12 +210,16 @@ function ItemCardMain({
                             {myName}
                         </Typography>
                 </Link>
-            </Box>
+            </Name>
             <Box sx={{display: 'flex', alignItems: 'center'}}>
-                <Rating precision={0.1} readOnly value={rating} sx={{margin: '0px 10px'}} />
-                <Typography sx={{fontSize: '12px', color: '#99999d', fontWeight: 'bold', paddingTop: '3px'}}>
-                    {countOrders} заказов
-                </Typography>
+                <Hidden smDown>
+                    <Rating precision={0.1} readOnly value={rating} sx={{margin: '0px 10px'}} />
+                </Hidden>
+                <Hidden mdDown>
+                    <Typography sx={{ fontSize: '12px', color: '#99999d', fontWeight: 'bold', paddingTop: '3px' }}>
+                        {countOrders} заказов
+                    </Typography>
+                </Hidden>
             </Box>
             
             
@@ -201,21 +245,23 @@ function ItemCardMain({
 
                         </Box>
                         : <Button
-                            sx={{ maxWidth: '60%', margin: '5px 0' }}
+                            sx={{ maxWidth: '70%', margin: '5px 0' }}
                             variant="contained"
                             onClick={addItem}>
                             В корзину
                         </Button>
                 }
-                <Typography sx={{ fontWeight: 'bold' }}>
-                    {myDateDelivery.toLocaleDateString().substring(0,5)} <Typography sx={{ color: 'gray' }} component="span">
-                        доставит PLAZA
+                <Hidden mdDown>
+                    <Typography sx={{ fontWeight: 'bold' }}>
+                        {myDateDelivery.toLocaleDateString().substring(0, 5)} <Typography sx={{ color: 'gray' }} component="span">
+                            доставит PLAZA
+                        </Typography>
                     </Typography>
-                </Typography>
+                </Hidden>
             </Box>
             
 
-        </Box>
+        </Root>
     );
 }
 

@@ -5,7 +5,7 @@ const initalState: IProductState = {
     products: [],
     productsInCart: [],
     productsInFavorite: [],
-    cartObjects: [],
+    objects: [],
     isLoading: false,
     checkedProductsInCart: [],
     productPage: null,
@@ -23,13 +23,25 @@ export const productReducer = (state = initalState, action: ProductAction): IPro
         case ProductActionTypes.GET_PRODUCTS_IN_CART: {
             return{
                 ...state,
-                cartObjects: action.payload.products
+                objects: action.payload.products
             }
         }
         case ProductActionTypes.SET_PRODUCTS_IN_CART: {
             return{
                 ...state,
                 productsInCart: action.payload.products
+            }
+        }
+        case ProductActionTypes.GET_PRODUCTS_IN_FAVORITE: {
+            return{
+                ...state,
+                objects: action.payload.products
+            }
+        }
+        case ProductActionTypes.SET_PRODUCTS_IN_FAVORITE: {
+            return{
+                ...state,
+                productsInFavorite: action.payload.products
             }
         }
         case ProductActionTypes.ADD_PRODUCT_CART: {
@@ -99,10 +111,10 @@ export const productReducer = (state = initalState, action: ProductAction): IPro
             if(foundFavoriteIndex > -1) newFavorite.splice(foundFavoriteIndex, 1)
             else newFavorite.push({productId: payload.productId})
 
+            localStorage.setItem('productsInFavorite', JSON.stringify(newFavorite))
             return {
                 ...state,
                 productsInFavorite: newFavorite,
-               
             }
         }
         case ProductActionTypes.DELETE_PRODUCT_FROM_CART: {
